@@ -394,11 +394,14 @@
     }
 
     .touch-target-label {
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--earth-brown);
+      text-align: center;
+      line-height: 1.25;
+      padding: 0 0.5rem;
     }
 
     .breathe-skip-btn {
@@ -459,7 +462,9 @@
       aspect-ratio: 1 / 1;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.16;
+      /* ==================== watermark OPACITY ==================== */
+      /* Adjust this value between 0.10 (faint) and 1.0 (fully solid) */
+      opacity: 0.35;
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
@@ -1036,10 +1041,6 @@
          ontouchcancel="stopBreathingSession(event)">
       
       <div class="breathe-touch-btn">
-        <svg class="touch-target-icon" id="touchIcon" viewBox="0 0 24 24">
-          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
         <span class="touch-target-label">PRESS & HOLD</span>
       </div>
     </div>
@@ -1052,7 +1053,7 @@
   <!-- ========================================================================
        3. FIXED WATERMARK BACKGROUND (Stationary Behind All Content)
        ======================================================================== -->
-  <div class="fixed-watermark-bg use-fallback" id="watermarkBg" aria-hidden="true"></div>
+  <div class="fixed-watermark-bg" id="watermarkBg" aria-hidden="true"></div>
 
   <!-- Main Scrollable Body Container -->
   <div class="page-content-wrapper">
@@ -1752,8 +1753,7 @@
     const mainText = document.getElementById('breatheMainText');
     const subText = document.getElementById('breatheSubText');
     const hudInterior = document.getElementById('breatheHudInterior');
-    const touchIcon = document.getElementById('touchIcon');
-
+    
     function startBreathingSession(e) {
       if (e) e.preventDefault();
       if (isHolding) return;
@@ -1786,7 +1786,6 @@
       mainText.style.color = 'var(--earth-brown)';
       subText.textContent = 'Hold continuous touch';
       hudInterior.style.background = 'rgba(255, 255, 255, 0.9)';
-      touchIcon.style.stroke = 'var(--earth-brown)';
     }
 
     function updateBreathingLoop(timestamp) {
@@ -1806,7 +1805,6 @@
         mainText.style.color = 'var(--breathe-green)';
         subText.textContent = 'Filling your lungs';
         hudInterior.style.background = 'rgba(46, 163, 111, 0.08)';
-        touchIcon.style.stroke = 'var(--breathe-green)';
       } else {
         // 2s to 7s: Exhale Phase (Terracotta Red)
         if (!hasSwitchedToExhale) {
@@ -1821,7 +1819,6 @@
         mainText.style.color = 'var(--breathe-red)';
         subText.textContent = 'Exhaling tension';
         hudInterior.style.background = 'rgba(210, 100, 70, 0.08)';
-        touchIcon.style.stroke = 'var(--breathe-red)';
       }
 
       if (elapsed >= TOTAL_BREATHE_TIME) {
