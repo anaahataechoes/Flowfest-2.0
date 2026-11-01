@@ -202,8 +202,8 @@
       right: 0;
       bottom: 0;
       z-index: 10000; /* Directly below the sticky header */
-      padding-top: 108px; /* Offset so content sits cleanly below sticky header */
-      padding-bottom: 2rem;
+      padding-top: 84px; /* Shifted up cleanly beneath sticky header */
+      padding-bottom: 68px; /* Safe breathing room above sticky footer */
       background: radial-gradient(circle at center, #ffffff 0%, var(--bg-canvas) 70%, var(--bg-cream) 100%);
       color: var(--earth-brown);
       display: flex;
@@ -215,7 +215,6 @@
       padding-right: 1.25rem;
       user-select: none;
       -webkit-user-select: none;
-      touch-action: none;
       transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), filter 1.1s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -252,7 +251,7 @@
       font-size: 0.82rem;
       color: var(--earth-muted);
       max-width: 380px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.8rem; /* Lifted up */
       line-height: 1.35;
     }
 
@@ -264,7 +263,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.1rem;
+      margin-bottom: 0.75rem; /* Lifted up */
     }
 
     .breathe-svg-ring {
@@ -406,7 +405,7 @@
       font-size: 0.74rem;
       letter-spacing: 0.04em;
       cursor: pointer;
-      margin-top: 1.4rem;
+      margin-top: 0.75rem; /* Lifted up */
       padding: 0.35rem 0.75rem;
       text-decoration: underline;
       text-underline-offset: 3px;
@@ -1828,6 +1827,24 @@
   </footer>
 
   <!-- ========================================================================
+       IN-PAGE TAP-TO-EXPAND LIGHTBOX (95% Screen View with Floating CTA)
+       ======================================================================== -->
+  <div class="media-lightbox-overlay" id="mediaLightbox" onclick="handleLightboxBackdropClick(event)">
+    <button type="button" class="lightbox-close-btn" onclick="closeMediaLightbox()" aria-label="Close Fullscreen View">✕</button>
+    
+    <div class="lightbox-media-container" id="lightboxMediaContainer">
+      <!-- Expanded pure video or image dynamically inserted here (text hidden) -->
+    </div>
+
+    <div class="lightbox-floating-cta-wrap">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc0SFBL7gRpuElOVecEHUXl8MkM_01W0LOuRfbAPZn8Qt5reA/viewform?usp=header" target="_blank" class="lightbox-cta-btn">
+        <span>Apply For Your Invite</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================================
        SCRIPTS: BREATH HUD ENGINE, OBSERVERS & GLOBAL AUDIO SYNC
        ======================================================================== -->
   <script>
@@ -2027,11 +2044,19 @@
     /* ==========================================================================
        LIGHTBOX EXPANDER CONTROLLER (Tap to Expand to 95%, Auto-Unmute)
        ========================================================================== */
-    const mediaLightbox = document.getElementById('mediaLightbox');
-    const lightboxMediaContainer = document.getElementById('lightboxMediaContainer');
+    let mediaLightbox = null;
+    let lightboxMediaContainer = null;
+
+    function getLightboxElements() {
+      if (!mediaLightbox) mediaLightbox = document.getElementById('mediaLightbox');
+      if (!lightboxMediaContainer) lightboxMediaContainer = document.getElementById('lightboxMediaContainer');
+      return { mediaLightbox, lightboxMediaContainer };
+    }
     let activeLightboxVideo = null;
 
     function openMediaLightbox(mediaSrc, mediaType) {
+      const { mediaLightbox, lightboxMediaContainer } = getLightboxElements();
+      if (!mediaLightbox || !lightboxMediaContainer) return;
       lightboxMediaContainer.innerHTML = '';
       activeLightboxVideo = null;
 
@@ -2067,7 +2092,8 @@
     }
 
     function closeMediaLightbox() {
-      if (!mediaLightbox.classList.contains('active')) return;
+      const { mediaLightbox, lightboxMediaContainer } = getLightboxElements();
+      if (!mediaLightbox || !mediaLightbox.classList.contains('active')) return;
       if (activeLightboxVideo) {
         activeLightboxVideo.pause();
         activeLightboxVideo.src = '';
@@ -2131,22 +2157,6 @@
     });
   </script>
 
-  <!-- ========================================================================
-       IN-PAGE TAP-TO-EXPAND LIGHTBOX (95% Screen View with Floating CTA)
-       ======================================================================== -->
-  <div class="media-lightbox-overlay" id="mediaLightbox" onclick="handleLightboxBackdropClick(event)">
-    <button type="button" class="lightbox-close-btn" onclick="closeMediaLightbox()" aria-label="Close Fullscreen View">✕</button>
-    
-    <div class="lightbox-media-container" id="lightboxMediaContainer">
-      <!-- Expanded pure video or image dynamically inserted here (text hidden) -->
-    </div>
 
-    <div class="lightbox-floating-cta-wrap">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc0SFBL7gRpuElOVecEHUXl8MkM_01W0LOuRfbAPZn8Qt5reA/viewform?usp=header" target="_blank" class="lightbox-cta-btn">
-        <span>Apply For Your Invite</span>
-        <span>→</span>
-      </a>
-    </div>
-  </div>
 </body>
 </html>
