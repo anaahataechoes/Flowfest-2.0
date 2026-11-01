@@ -791,38 +791,24 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 1.2rem;
-      background: radial-gradient(circle at center, rgba(247, 242, 234, 0.88) 0%, rgba(238, 229, 215, 0.94) 100%);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      padding: 1.5rem;
+      background: radial-gradient(circle at center, rgba(247, 242, 234, 0.90) 0%, rgba(238, 229, 215, 0.96) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--border-warm);
       pointer-events: none;
     }
 
-    .mist-icon {
-      width: 38px;
-      height: 38px;
-      margin-bottom: 0.65rem;
-      opacity: 0.85;
-      color: var(--terracotta);
-    }
-
     .mist-title {
       font-family: var(--font-serif);
-      font-size: 1.15rem;
+      font-size: clamp(1.1rem, 3.2vw, 1.35rem);
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--earth-brown);
-      line-height: 1.2;
-    }
-
-    .mist-sub {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: var(--earth-muted);
-      margin-top: 0.35rem;
+      line-height: 1.3;
+      text-align: center;
+      margin: auto 0;
     }
 
     .stay-square-card {
@@ -988,6 +974,118 @@
         font-size: 0.78rem;
         padding: 0.52rem 0.5rem;
       }
+    }
+
+    /* ==========================================================================
+       IN-PAGE TAP-TO-EXPAND LIGHTBOX (95% Screen View with Floating CTA)
+       ========================================================================== */
+    .media-lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 25000;
+      background: rgba(16, 28, 21, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s ease;
+      touch-action: pan-y;
+      padding: 1rem 0.5rem 5rem;
+    }
+
+    .media-lightbox-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 25010;
+      transition: background 0.2s ease, transform 0.2s ease;
+      line-height: 1;
+    }
+
+    .lightbox-close-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.08);
+    }
+
+    .lightbox-media-container {
+      position: relative;
+      width: 95vw;
+      max-width: 520px;
+      height: 75vh;
+      max-height: 720px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+      background: #000000;
+    }
+
+    .lightbox-expanded-element {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Floating CTA Pill in Lightbox View */
+    .lightbox-floating-cta-wrap {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 25010;
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+    }
+
+    .lightbox-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      background: var(--sunset-coral);
+      color: #ffffff;
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+      box-shadow: 0 6px 20px rgba(230, 92, 55, 0.45);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .lightbox-cta-btn:hover {
+      background: var(--terracotta-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Interactive tap indicator cursor */
+    .reel-snap-card, .artist-snap-card, .stay-square-card {
+      cursor: pointer;
     }
   </style>
 </head>
@@ -1388,13 +1486,7 @@
           <!-- Artist 1 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist1.jpg" onerror="this.src='https://placehold.co/600x750/18281f/fff?text=Artist+01'" alt="Artist 01">
             <div class="reel-bottom-overlay">
@@ -1409,13 +1501,7 @@
           <!-- Artist 2 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist2.jpg" onerror="this.src='https://placehold.co/600x750/241812/fff?text=Artist+02'" alt="Artist 02">
             <div class="reel-bottom-overlay">
@@ -1430,13 +1516,7 @@
           <!-- Artist 3 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist3.jpg" onerror="this.src='https://placehold.co/600x750/302018/fff?text=Artist+03'" alt="Artist 03">
             <div class="reel-bottom-overlay">
@@ -1451,13 +1531,7 @@
           <!-- Artist 4 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist4.jpg" onerror="this.src='https://placehold.co/600x750/1f2820/fff?text=Artist+04'" alt="Artist 04">
             <div class="reel-bottom-overlay">
@@ -1472,13 +1546,7 @@
           <!-- Artist 5 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist5.jpg" onerror="this.src='https://placehold.co/600x750/2b1a1f/fff?text=Artist+05'" alt="Artist 05">
             <div class="reel-bottom-overlay">
@@ -1493,13 +1561,7 @@
           <!-- Artist 6 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist6.jpg" onerror="this.src='https://placehold.co/600x750/1e2329/fff?text=Artist+06'" alt="Artist 06">
             <div class="reel-bottom-overlay">
@@ -1514,13 +1576,7 @@
           <!-- Artist 7 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist7.jpg" onerror="this.src='https://placehold.co/600x750/332219/fff?text=Artist+07'" alt="Artist 07">
             <div class="reel-bottom-overlay">
@@ -1535,13 +1591,7 @@
           <!-- Artist 8 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist8.jpg" onerror="this.src='https://placehold.co/600x750/18281f/fff?text=Artist+08'" alt="Artist 08">
             <div class="reel-bottom-overlay">
@@ -1556,13 +1606,7 @@
           <!-- Artist 9 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist9.jpg" onerror="this.src='https://placehold.co/600x750/261b16/fff?text=Artist+09'" alt="Artist 09">
             <div class="reel-bottom-overlay">
@@ -1577,13 +1621,7 @@
           <!-- Artist 10 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist10.jpg" onerror="this.src='https://placehold.co/600x750/1f2820/fff?text=Artist+10'" alt="Artist 10">
             <div class="reel-bottom-overlay">
@@ -1598,13 +1636,7 @@
           <!-- Artist 11 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist11.jpg" onerror="this.src='https://placehold.co/600x750/2b1a1f/fff?text=Artist+11'" alt="Artist 11">
             <div class="reel-bottom-overlay">
@@ -1619,13 +1651,7 @@
           <!-- Artist 12 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist12.jpg" onerror="this.src='https://placehold.co/600x750/1e2329/fff?text=Artist+12'" alt="Artist 12">
             <div class="reel-bottom-overlay">
@@ -1640,13 +1666,7 @@
           <!-- Artist 13 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist13.jpg" onerror="this.src='https://placehold.co/600x750/332219/fff?text=Artist+13'" alt="Artist 13">
             <div class="reel-bottom-overlay">
@@ -1661,13 +1681,7 @@
           <!-- Artist 14 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist14.jpg" onerror="this.src='https://placehold.co/600x750/18281f/fff?text=Artist+14'" alt="Artist 14">
             <div class="reel-bottom-overlay">
@@ -1682,13 +1696,7 @@
           <!-- Artist 15 -->
           <article class="artist-snap-card">
             <div class="artist-mist-veil">
-              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
               <div class="mist-title">Artist Revealing Soon</div>
-              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
             </div>
             <img class="card-media-element" src="artist15.jpg" onerror="this.src='https://placehold.co/600x750/241812/fff?text=Artist+15'" alt="Artist 15">
             <div class="reel-bottom-overlay">
@@ -2015,6 +2023,130 @@
         gateOverlay.classList.add('unlocked');
       }, 1100);
     }
+
+    /* ==========================================================================
+       LIGHTBOX EXPANDER CONTROLLER (Tap to Expand to 95%, Auto-Unmute)
+       ========================================================================== */
+    const mediaLightbox = document.getElementById('mediaLightbox');
+    const lightboxMediaContainer = document.getElementById('lightboxMediaContainer');
+    let activeLightboxVideo = null;
+
+    function openMediaLightbox(mediaSrc, mediaType) {
+      lightboxMediaContainer.innerHTML = '';
+      activeLightboxVideo = null;
+
+      if (mediaType === 'video') {
+        const vid = document.createElement('video');
+        vid.className = 'lightbox-expanded-element';
+        vid.src = mediaSrc;
+        vid.autoplay = true;
+        vid.loop = true;
+        vid.playsInline = true;
+        vid.controls = true;
+        // User requested: Automatically unmute with sound when opened in lightbox
+        vid.muted = false;
+        vid.volume = 1.0;
+        
+        lightboxMediaContainer.appendChild(vid);
+        activeLightboxVideo = vid;
+
+        vid.play().catch(() => {
+          // Fallback if browser blocks unmuted autoplay without direct gesture
+          vid.muted = true;
+          vid.play().catch(() => {});
+        });
+      } else {
+        const img = document.createElement('img');
+        img.className = 'lightbox-expanded-element';
+        img.src = mediaSrc;
+        img.alt = 'Expanded View';
+        lightboxMediaContainer.appendChild(img);
+      }
+
+      mediaLightbox.classList.add('active');
+    }
+
+    function closeMediaLightbox() {
+      if (!mediaLightbox.classList.contains('active')) return;
+      if (activeLightboxVideo) {
+        activeLightboxVideo.pause();
+        activeLightboxVideo.src = '';
+        activeLightboxVideo = null;
+      }
+      lightboxMediaContainer.innerHTML = '';
+      mediaLightbox.classList.remove('active');
+    }
+
+    function handleLightboxBackdropClick(e) {
+      // If user clicked the backdrop or container outside media controls
+      if (e.target === mediaLightbox || e.target === lightboxMediaContainer) {
+        closeMediaLightbox();
+      }
+    }
+
+    // Dismiss lightbox on scroll (wheel or touchmove)
+    window.addEventListener('wheel', (e) => {
+      if (mediaLightbox.classList.contains('active') && Math.abs(e.deltaY) > 25) {
+        closeMediaLightbox();
+      }
+    }, { passive: true });
+
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (mediaLightbox.classList.contains('active')) {
+        const diff = Math.abs(e.touches[0].clientY - touchStartY);
+        if (diff > 45) {
+          closeMediaLightbox();
+        }
+      }
+    }, { passive: true });
+
+    // Attach click-to-expand to all cards (excluding sound button clicks)
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.reel-snap-card, .artist-snap-card, .stay-square-card');
+      cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          // Do not trigger expand if clicking sound toggle button
+          if (e.target.closest('.sound-toggle-btn')) return;
+          // Do not trigger expand if artist mist veil is currently active on artist cards
+          if (card.classList.contains('artist-snap-card')) {
+            const mistStyle = getComputedStyle(document.documentElement).getPropertyValue('--artist-mist-display').trim();
+            if (mistStyle !== 'none') return;
+          }
+
+          const video = card.querySelector('video');
+          const img = card.querySelector('img');
+
+          if (video && video.src) {
+            openMediaLightbox(video.currentSrc || video.src, 'video');
+          } else if (img && img.src) {
+            openMediaLightbox(img.currentSrc || img.src, 'image');
+          }
+        });
+      });
+    });
   </script>
+
+  <!-- ========================================================================
+       IN-PAGE TAP-TO-EXPAND LIGHTBOX (95% Screen View with Floating CTA)
+       ======================================================================== -->
+  <div class="media-lightbox-overlay" id="mediaLightbox" onclick="handleLightboxBackdropClick(event)">
+    <button type="button" class="lightbox-close-btn" onclick="closeMediaLightbox()" aria-label="Close Fullscreen View">✕</button>
+    
+    <div class="lightbox-media-container" id="lightboxMediaContainer">
+      <!-- Expanded pure video or image dynamically inserted here (text hidden) -->
+    </div>
+
+    <div class="lightbox-floating-cta-wrap">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc0SFBL7gRpuElOVecEHUXl8MkM_01W0LOuRfbAPZn8Qt5reA/viewform?usp=header" target="_blank" class="lightbox-cta-btn">
+        <span>Apply For Your Invite</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
 </body>
 </html>
