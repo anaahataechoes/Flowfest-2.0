@@ -12,7 +12,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    /* ==========================================================================
+       artist reveal (MASTER ON/OFF TOGGLE)
+       - To HIDE artists behind mountain mist: set --artist-mist-display: flex;
+       - To REVEAL all artists (turn mist OFF): set --artist-mist-display: none;
+       ========================================================================== */
     :root {
+      --artist-mist-display: flex; /* <-- Change to 'none' when ready to reveal artists */
+
       /* Palette & Contrast Tones (Light Flowfest Aesthetic) */
       --sticky-header-bg: rgba(247, 242, 234, 0.96); /* Frosted linen glass */
       --bg-canvas: #f7f2ea;
@@ -186,7 +193,7 @@
     }
 
     /* ==========================================================================
-       2. LIGHT FLOWFEST BREATHWORK SCREEN (2s Inhale Green + 5s Exhale Red)
+       2. LIGHT FLOWFEST BREATHWORK SCREEN (2s Inhale Green + 4s Exhale Red = 6s)
        ========================================================================== */
     .breathe-gate-overlay {
       position: fixed;
@@ -379,18 +386,6 @@
     .breathe-touch-target-wrap.pressing .breathe-touch-btn::before {
       animation: none;
       opacity: 0;
-    }
-
-    .touch-target-icon {
-      width: 28px;
-      height: 28px;
-      stroke: var(--earth-brown);
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      margin-bottom: 3px;
-      transition: stroke 0.3s ease;
     }
 
     .touch-target-label {
@@ -786,6 +781,50 @@
       box-shadow: 0 14px 28px -6px rgba(40, 28, 21, 0.16);
     }
 
+    /* Mountain Mist Overlay for Artist Cards */
+    .artist-mist-veil {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      display: var(--artist-mist-display);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.2rem;
+      background: radial-gradient(circle at center, rgba(247, 242, 234, 0.88) 0%, rgba(238, 229, 215, 0.94) 100%);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-warm);
+      pointer-events: none;
+    }
+
+    .mist-icon {
+      width: 38px;
+      height: 38px;
+      margin-bottom: 0.65rem;
+      opacity: 0.85;
+      color: var(--terracotta);
+    }
+
+    .mist-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--earth-brown);
+      line-height: 1.2;
+    }
+
+    .mist-sub {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--earth-muted);
+      margin-top: 0.35rem;
+    }
+
     .stay-square-card {
       flex: 0 0 85%;
       max-width: 440px;
@@ -804,6 +843,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      background: #141a16;
     }
 
     .reel-bottom-overlay {
@@ -873,7 +913,7 @@
 
     /* ==========================================================================
        7. SLIM STICKY FOOTER BAR
-       ========================================================================== */
+       ======================================================================== */
     .sticky-footer-bar {
       position: fixed;
       bottom: 0;
@@ -1012,7 +1052,7 @@
   </aside>
 
   <!-- ========================================================================
-       2. LIGHT-THEMED CONSCIOUS BREATHWORK GATE (2s Inhale Green + 5s Exhale Red)
+       2. LIGHT-THEMED CONSCIOUS BREATHWORK GATE (2s Inhale Green + 4s Exhale Red = 6s Total)
        ======================================================================== -->
   <div class="breathe-gate-overlay" id="breatheGate">
     <div class="breathe-tag">Nilgiris Mountain Arrival</div>
@@ -1127,7 +1167,7 @@
           
           <!-- Card 1 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="clip1.mp4" poster="https://placehold.co/600x1066/18281f/fff?text=Clip+1+Preview"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip1.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Moment 01 / 10</div>
@@ -1139,7 +1179,7 @@
 
           <!-- Card 2 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="clip2.mp4" poster="https://placehold.co/600x1066/281c15/fff?text=Clip+2+Preview"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip2.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Moment 02 / 10</div>
@@ -1151,7 +1191,7 @@
 
           <!-- Card 3 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="clip3.mp4" poster="https://placehold.co/600x1066/3a2216/fff?text=Clip+3+Preview"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip3.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Moment 03 / 10</div>
@@ -1163,7 +1203,7 @@
 
           <!-- Card 4 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="clip4.mp4" poster="https://placehold.co/600x1066/18281f/fff?text=Clip+4+Preview"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip4.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Moment 04 / 10</div>
@@ -1175,7 +1215,7 @@
 
           <!-- Card 5 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="clip5.mp4" poster="https://placehold.co/600x1066/281c15/fff?text=Clip+5+Preview"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip5.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Moment 05 / 10</div>
@@ -1187,7 +1227,7 @@
 
           <!-- Card 6 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="clip6.mp4" poster="https://placehold.co/600x1066/18281f/fff?text=Clip+6+Preview"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip6.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Moment 06 / 10</div>
@@ -1199,7 +1239,7 @@
 
           <!-- Card 7 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="clip7.mp4" poster="https://placehold.co/600x1066/38261e/fff?text=Clip+7+Preview"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip7.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Moment 07 / 10</div>
@@ -1211,7 +1251,7 @@
 
           <!-- Card 8 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="clip8.mp4" poster="https://placehold.co/600x1066/18281f/fff?text=Clip+8+Preview"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip8.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Moment 08 / 10</div>
@@ -1223,7 +1263,7 @@
 
           <!-- Card 9 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="clip9.mp4" poster="https://placehold.co/600x1066/281c15/fff?text=Clip+9+Preview"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip9.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Moment 09 / 10</div>
@@ -1235,7 +1275,7 @@
 
           <!-- Card 10 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="clip10.mp4" poster="https://placehold.co/600x1066/18281f/fff?text=Clip+10+Preview"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip10.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Moment 10 / 10</div>
@@ -1265,7 +1305,7 @@
           
           <!-- Testimonial 1 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="testimonial1.mp4" poster="https://placehold.co/600x1066/18281f/fff?text=Ananya+Story"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="testimonial1.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Ananya • Bangalore</div>
@@ -1277,7 +1317,7 @@
 
           <!-- Testimonial 2 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="testimonial2.mp4" poster="https://placehold.co/600x1066/281c15/fff?text=Kabir+Story"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="testimonial2.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Kabir • Mumbai</div>
@@ -1289,7 +1329,7 @@
 
           <!-- Testimonial 3 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="testimonial3.mp4" poster="https://placehold.co/600x1066/3a2216/fff?text=Meera+Story"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="testimonial3.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Meera • Chennai</div>
@@ -1301,7 +1341,7 @@
 
           <!-- Testimonial 4 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="testimonial4.mp4" poster="https://placehold.co/600x1066/18281f/fff?text=Rohan+Story"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="testimonial4.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Rohan • Hyderabad</div>
@@ -1313,7 +1353,7 @@
 
           <!-- Testimonial 5 -->
           <article class="reel-snap-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="testimonial5.mp4" poster="https://placehold.co/600x1066/281c15/fff?text=Tanya+Dev+Story"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="testimonial5.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Tanya & Dev • Goa</div>
@@ -1327,7 +1367,8 @@
       </section>
 
       <!-- ======================================================================
-           8. ARTISTS & FACILITATORS LINE-UP (15 Cards)
+           8. ARTISTS & FACILITATORS LINE-UP (Covered with Mountain Mist Veil)
+           Control visibility via --artist-mist-display in :root (artist reveal)
            ====================================================================== -->
       <section class="reels-section" id="lineup">
         <div class="reels-header-area">
@@ -1346,7 +1387,16 @@
           
           <!-- Artist 1 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist1.jpg" onerror="this.src='https://placehold.co/600x750/18281f/fff?text=Artist+01+(Photo/Video)'" alt="Artist 01">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist1.jpg" onerror="this.src='https://placehold.co/600x750/18281f/fff?text=Artist+01'" alt="Artist 01">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Music & Sacred Vocals • 01 / 15</div>
@@ -1358,7 +1408,16 @@
 
           <!-- Artist 2 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist2.jpg" onerror="this.src='https://placehold.co/600x750/241812/fff?text=Artist+02+(Photo/Video)'" alt="Artist 02">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist2.jpg" onerror="this.src='https://placehold.co/600x750/241812/fff?text=Artist+02'" alt="Artist 02">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Ecstatic Dance & Movement • 02 / 15</div>
@@ -1370,7 +1429,16 @@
 
           <!-- Artist 3 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist3.jpg" onerror="this.src='https://placehold.co/600x750/302018/fff?text=Artist+03+(Photo/Video)'" alt="Artist 03">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist3.jpg" onerror="this.src='https://placehold.co/600x750/302018/fff?text=Artist+03'" alt="Artist 03">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Sound Journeys & Handpan • 03 / 15</div>
@@ -1382,7 +1450,16 @@
 
           <!-- Artist 4 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist4.jpg" onerror="this.src='https://placehold.co/600x750/1f2820/fff?text=Artist+04+(Photo/Video)'" alt="Artist 04">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist4.jpg" onerror="this.src='https://placehold.co/600x750/1f2820/fff?text=Artist+04'" alt="Artist 04">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Primal Breathwork & Yoga • 04 / 15</div>
@@ -1394,7 +1471,16 @@
 
           <!-- Artist 5 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist5.jpg" onerror="this.src='https://placehold.co/600x750/2b1a1f/fff?text=Artist+05+(Photo/Video)'" alt="Artist 05">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist5.jpg" onerror="this.src='https://placehold.co/600x750/2b1a1f/fff?text=Artist+05'" alt="Artist 05">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Expressive Arts & Clay • 05 / 15</div>
@@ -1406,7 +1492,16 @@
 
           <!-- Artist 6 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist6.jpg" onerror="this.src='https://placehold.co/600x750/1e2329/fff?text=Artist+06+(Photo/Video)'" alt="Artist 06">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist6.jpg" onerror="this.src='https://placehold.co/600x750/1e2329/fff?text=Artist+06'" alt="Artist 06">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Folk Strings & Poetry • 06 / 15</div>
@@ -1418,7 +1513,16 @@
 
           <!-- Artist 7 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist7.jpg" onerror="this.src='https://placehold.co/600x750/332219/fff?text=Artist+07+(Photo/Video)'" alt="Artist 07">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist7.jpg" onerror="this.src='https://placehold.co/600x750/332219/fff?text=Artist+07'" alt="Artist 07">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Meditative Stillness • 07 / 15</div>
@@ -1430,7 +1534,16 @@
 
           <!-- Artist 8 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist8.jpg" onerror="this.src='https://placehold.co/600x750/18281f/fff?text=Artist+08+(Photo/Video)'" alt="Artist 08">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist8.jpg" onerror="this.src='https://placehold.co/600x750/18281f/fff?text=Artist+08'" alt="Artist 08">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Organic Beats & Live Loop • 08 / 15</div>
@@ -1442,7 +1555,16 @@
 
           <!-- Artist 9 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist9.jpg" onerror="this.src='https://placehold.co/600x750/261b16/fff?text=Artist+09+(Photo/Video)'" alt="Artist 09">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist9.jpg" onerror="this.src='https://placehold.co/600x750/261b16/fff?text=Artist+09'" alt="Artist 09">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Cacao & Ritual Facilitation • 09 / 15</div>
@@ -1454,7 +1576,16 @@
 
           <!-- Artist 10 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist10.jpg" onerror="this.src='https://placehold.co/600x750/1f2820/fff?text=Artist+10+(Photo/Video)'" alt="Artist 10">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist10.jpg" onerror="this.src='https://placehold.co/600x750/1f2820/fff?text=Artist+10'" alt="Artist 10">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Percussion & Tribal Rhythm • 10 / 15</div>
@@ -1466,7 +1597,16 @@
 
           <!-- Artist 11 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist11.jpg" onerror="this.src='https://placehold.co/600x750/2b1a1f/fff?text=Artist+11+(Photo/Video)'" alt="Artist 11">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist11.jpg" onerror="this.src='https://placehold.co/600x750/2b1a1f/fff?text=Artist+11'" alt="Artist 11">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Sufi & Qawwali Mysticism • 11 / 15</div>
@@ -1478,7 +1618,16 @@
 
           <!-- Artist 12 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist12.jpg" onerror="this.src='https://placehold.co/600x750/1e2329/fff?text=Artist+12+(Photo/Video)'" alt="Artist 12">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist12.jpg" onerror="this.src='https://placehold.co/600x750/1e2329/fff?text=Artist+12'" alt="Artist 12">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Nature Foraging & Flora • 12 / 15</div>
@@ -1490,7 +1639,16 @@
 
           <!-- Artist 13 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist13.jpg" onerror="this.src='https://placehold.co/600x750/332219/fff?text=Artist+13+(Photo/Video)'" alt="Artist 13">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist13.jpg" onerror="this.src='https://placehold.co/600x750/332219/fff?text=Artist+13'" alt="Artist 13">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Soundscape Ambient Synth • 13 / 15</div>
@@ -1502,7 +1660,16 @@
 
           <!-- Artist 14 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist14.jpg" onerror="this.src='https://placehold.co/600x750/18281f/fff?text=Artist+14+(Photo/Video)'" alt="Artist 14">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist14.jpg" onerror="this.src='https://placehold.co/600x750/18281f/fff?text=Artist+14'" alt="Artist 14">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Theater & Vulnerability Lab • 14 / 15</div>
@@ -1514,7 +1681,16 @@
 
           <!-- Artist 15 -->
           <article class="artist-snap-card">
-            <img class="card-media-element" src="artist15.jpg" onerror="this.src='https://placehold.co/600x750/241812/fff?text=Artist+15+(Photo/Video)'" alt="Artist 15">
+            <div class="artist-mist-veil">
+              <svg class="mist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <div class="mist-title">Artist Revealing Soon</div>
+              <div class="mist-sub">Phase 1 Line-Up Drops Soon</div>
+            </div>
+            <img class="card-media-element" src="artist15.jpg" onerror="this.src='https://placehold.co/600x750/241812/fff?text=Artist+15'" alt="Artist 15">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
                 <div class="reel-counter-tag">Sacred Geometry & Visuals • 15 / 15</div>
@@ -1528,7 +1704,7 @@
       </section>
 
       <!-- ======================================================================
-           9. LOCATION & STAY ("THE ABODE")
+           9. LOCATION & STAY ("THE ABODE") - Exactly 7 Cards: 1 Video + 6 Images
            ====================================================================== -->
       <section class="reels-section" id="stay">
         <div class="reels-header-area">
@@ -1542,102 +1718,80 @@
 
         <div class="reels-carousel-viewport">
           
-          <!-- Slide 1: Drone Video -->
+          <!-- Venue 1: Drone Video -->
           <article class="stay-square-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="estate-video.mp4" poster="https://placehold.co/700x700/18281f/fff?text=Drone+Overview+Preview"></video>
+            <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="venue1.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">Drone Overview • 01 / 09</div>
+                <div class="reel-counter-tag">Drone Overview • 01 / 07</div>
                 <div class="reel-caption-text">Cinematic aerial view of The Door to Nirvana nestled in Kotagiri hills</div>
               </div>
               <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">🔇</button>
             </div>
           </article>
 
-          <!-- Slide 2: Main Lodge Exterior -->
+          <!-- Venue 2: Main Lodge Exterior -->
           <article class="stay-square-card">
-            <img class="card-media-element" src="hostel-exterior.jpg" onerror="this.src='https://placehold.co/700x700/241812/fff?text=The+Main+Lodge'" alt="The Main House Exterior">
+            <img class="card-media-element" src="venue2.jpg" onerror="this.src='https://placehold.co/700x700/241812/fff?text=The+Main+Lodge'" alt="The Main House Exterior">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">The Main House • 02 / 09</div>
+                <div class="reel-counter-tag">The Main House • 02 / 07</div>
                 <div class="reel-caption-text">The central wooden & stone lodge perched above the Nilgiris cloud line</div>
               </div>
             </div>
           </article>
 
-          <!-- Slide 3: Dormitories -->
+          <!-- Venue 3: Dormitories -->
           <article class="stay-square-card">
-            <img class="card-media-element" src="dorm-rooms.jpg" onerror="this.src='https://placehold.co/700x700/302018/fff?text=Dormitories+(6,8,10+Beds)'" alt="Dormitory Rooms">
+            <img class="card-media-element" src="venue3.jpg" onerror="this.src='https://placehold.co/700x700/302018/fff?text=Dormitories+(6,8,10+Beds)'" alt="Dormitory Rooms">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">Shared Living • 03 / 09</div>
+                <div class="reel-counter-tag">Shared Living • 03 / 07</div>
                 <div class="reel-caption-text">6, 8 & 10-bed wooden dormitories with cozy duvets & personal lockers</div>
               </div>
             </div>
           </article>
 
-          <!-- Slide 4: Private Rooms -->
+          <!-- Venue 4: Private Rooms -->
           <article class="stay-square-card">
-            <img class="card-media-element" src="private-rooms.jpg" onerror="this.src='https://placehold.co/700x700/1f2820/fff?text=Private+Rooms'" alt="Private Rooms">
+            <img class="card-media-element" src="venue4.jpg" onerror="this.src='https://placehold.co/700x700/1f2820/fff?text=Private+Rooms'" alt="Private Rooms">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">Private Rooms • 04 / 09</div>
+                <div class="reel-counter-tag">Private Rooms • 04 / 07</div>
                 <div class="reel-caption-text">Double-occupancy rooms in the main lodge with mountain-facing windows</div>
               </div>
             </div>
           </article>
 
-          <!-- Slide 5: Private Cottages -->
+          <!-- Venue 5: Secluded Cottages -->
           <article class="stay-square-card">
-            <img class="card-media-element" src="private-cottages.jpg" onerror="this.src='https://placehold.co/700x700/2b1a1f/fff?text=4+Private+Cottages+(500m+away)'" alt="Private Cottages">
+            <img class="card-media-element" src="venue5.jpg" onerror="this.src='https://placehold.co/700x700/2b1a1f/fff?text=Private+Cottages'" alt="Private Cottages">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">Secluded Cottages • 05 / 09</div>
-                <div class="reel-caption-text">4 private chalets located 500m away in the pine grove for quiet solitude</div>
+                <div class="reel-counter-tag">Secluded Cottages • 05 / 07</div>
+                <div class="reel-caption-text">Private chalets located 500m away in the pine grove for quiet solitude</div>
               </div>
             </div>
           </article>
 
-          <!-- Slide 6: The Amphitheater -->
+          <!-- Venue 6: Open-Air Theater -->
           <article class="stay-square-card">
-            <img class="card-media-element" src="open-theater.jpg" onerror="this.src='https://placehold.co/700x700/1e2329/fff?text=Open-Air+Theater'" alt="The Amphitheater">
+            <img class="card-media-element" src="venue6.jpg" onerror="this.src='https://placehold.co/700x700/1e2329/fff?text=Open-Air+Theater'" alt="The Amphitheater">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">Amphitheater • 06 / 09</div>
+                <div class="reel-counter-tag">Amphitheater • 06 / 07</div>
                 <div class="reel-caption-text">Open-air mountain theater for film screenings, intimate talks & fire jams</div>
               </div>
             </div>
           </article>
 
-          <!-- Slide 7: Common Lounge -->
+          <!-- Venue 7: Common Room & Dining -->
           <article class="stay-square-card">
-            <img class="card-media-element" src="common-lounge.jpg" onerror="this.src='https://placehold.co/700x700/332219/fff?text=Common+Living+Room'" alt="The Common Room">
+            <img class="card-media-element" src="venue7.jpg" onerror="this.src='https://placehold.co/700x700/332219/fff?text=Common+Room+&+Dining'" alt="Common Room and Dining">
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">The Common Room • 07 / 09</div>
-                <div class="reel-caption-text">Warm fireside lounge, floor seating, acoustic instruments & library</div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Slide 8: Farm-To-Table Dining -->
-          <article class="stay-square-card">
-            <img class="card-media-element" src="dining-food.jpg" onerror="this.src='https://placehold.co/700x700/18281f/fff?text=Farm-To-Table+Dining'" alt="Dining and Food">
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Farm-To-Table • 08 / 09</div>
-                <div class="reel-caption-text">Wholesome community meals, wood-fired gatherings & hot herbal brews</div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Slide 9: Deck & Trails -->
-          <article class="stay-square-card">
-            <img class="card-media-element" src="trails-deck.jpg" onerror="this.src='https://placehold.co/700x700/261b16/fff?text=Movement+Deck+&+Trails'" alt="Deck and Trails">
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">The Deck & Trails • 09 / 09</div>
-                <div class="reel-caption-text">Panoramic sunrise movement deck and private tea estate walking paths</div>
+                <div class="reel-counter-tag">Living & Dining • 07 / 07</div>
+                <div class="reel-caption-text">Wholesome community meals, wood-fired gatherings, acoustic jam lounge</div>
               </div>
             </div>
           </article>
@@ -1666,7 +1820,7 @@
   </footer>
 
   <!-- ========================================================================
-       SCRIPTS: BREATH HUD ENGINE, OBSERVERS & UTILITIES
+       SCRIPTS: BREATH HUD ENGINE, OBSERVERS & GLOBAL AUDIO SYNC
        ======================================================================== -->
   <script>
     // YouTube Hero Embed
@@ -1689,19 +1843,26 @@
       backdrop.classList.toggle('active');
     }
 
-    // Sound toggle for any video card
+    /* ==========================================================================
+       GLOBAL AUDIO SYNC (INSTAGRAM-STYLE MUTE / UNMUTE)
+       Tapping any video mute button syncs all videos and buttons across the page
+       ========================================================================== */
+    let isGlobalMuted = true;
+
     function toggleVideoMute(btn) {
-      const card = btn.closest('article');
-      const video = card.querySelector('video');
-      if (video) {
-        if (video.muted) {
-          video.muted = false;
-          btn.textContent = '🔊';
-        } else {
-          video.muted = true;
-          btn.textContent = '🔇';
-        }
-      }
+      isGlobalMuted = !isGlobalMuted;
+
+      // Update all video elements across all carousels
+      const allVideos = document.querySelectorAll('.reel-video-element');
+      allVideos.forEach(vid => {
+        vid.muted = isGlobalMuted;
+      });
+
+      // Update all sound toggle buttons across the page
+      const allButtons = document.querySelectorAll('.sound-toggle-btn');
+      allButtons.forEach(b => {
+        b.textContent = isGlobalMuted ? '🔇' : '🔊';
+      });
     }
 
     // Centered reel autoplay observer
@@ -1713,6 +1874,7 @@
           entries.forEach(entry => {
             const video = entry.target;
             if (entry.isIntersecting) {
+              video.muted = isGlobalMuted; // Inherit current global audio state
               video.play().catch(() => {});
             } else {
               video.pause();
@@ -1736,9 +1898,9 @@
 
     /* ==========================================================================
        CONSCIOUS BREATHWORK TIMER ENGINE
-       2.0s Inhale (Green #2ea36f) + 5.0s Exhale (Red #d26445) = 7.0s Total
+       2.0s Inhale (Green #2ea36f) + 4.0s Exhale (Red #d26445) = 6.0s Total
        ========================================================================== */
-    const TOTAL_BREATHE_TIME = 7000;
+    const TOTAL_BREATHE_TIME = 6000;
     const INHALE_TIME = 2000;
     const CIRCUMFERENCE = 2 * Math.PI * 76; // 477.52
 
@@ -1806,7 +1968,7 @@
         subText.textContent = 'Filling your lungs';
         hudInterior.style.background = 'rgba(46, 163, 111, 0.08)';
       } else {
-        // 2s to 7s: Exhale Phase (Terracotta Red)
+        // 2s to 6s: Exhale Phase (Terracotta Red - exactly 4s)
         if (!hasSwitchedToExhale) {
           hasSwitchedToExhale = true;
           // Inhale -> Exhale transition haptic
