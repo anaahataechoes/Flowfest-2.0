@@ -78,7 +78,7 @@
       left: 0;
       right: 0;
       width: 100%;
-      z-index: 10001; /* Sits permanently above both page and breath gate */
+      z-index: 10001;
       background: var(--sticky-header-bg);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
@@ -217,6 +217,7 @@
       user-select: none;
       -webkit-user-select: none;
       overflow: hidden;
+      touch-action: none;
       transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), filter 1.1s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -245,7 +246,7 @@
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.94) 0%, rgba(247, 242, 234, 0.88) 65%, rgba(238, 229, 215, 0.94) 100%);
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.88) 0%, rgba(247, 242, 234, 0.82) 65%, rgba(238, 229, 215, 0.90) 100%);
       pointer-events: none;
     }
 
@@ -306,8 +307,8 @@
     }
 
     .breathe-track-path {
-      fill: rgba(255, 255, 255, 0.5);
-      stroke: rgba(40, 28, 21, 0.12);
+      fill: none;
+      stroke: rgba(40, 28, 21, 0.14);
       stroke-width: 6;
       stroke-linejoin: round;
       stroke-linecap: round;
@@ -319,50 +320,46 @@
       stroke-width: 7;
       stroke-linecap: round;
       stroke-linejoin: round;
-      /* Perimeter calculated dynamically in JS */
-      stroke-dasharray: 550;
-      stroke-dashoffset: 550;
+      stroke-dasharray: 540;
+      stroke-dashoffset: 540;
       transition: stroke 0.3s ease;
     }
 
+    /* Transparent floating interior - Positioned at top safe centroid */
     .breathe-hud-interior {
-      position: relative;
-      z-index: 2;
+      position: absolute;
+      top: 38%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 120px;
-      height: 85px;
-      margin-top: -16px; /* Centered visually inside the inverted triangle */
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid var(--border-warm);
-      box-shadow: 0 4px 16px rgba(40, 28, 21, 0.08);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 0.4rem;
       text-align: center;
-      transition: background 0.3s ease, border-color 0.3s ease;
+      pointer-events: none;
+      z-index: 2;
     }
 
     .breathe-hud-main-text {
-      font-size: 0.78rem;
+      font-size: 0.88rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--earth-brown);
-      line-height: 1.2;
+      line-height: 1.15;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
       transition: color 0.3s ease;
     }
 
     .breathe-hud-sub-text {
-      font-size: 0.62rem;
+      font-size: 0.68rem;
       font-weight: 600;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
       color: var(--earth-muted);
-      margin-top: 3px;
+      margin-top: 5px;
       line-height: 1.15;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
     }
 
     /* THUMB-LEVEL PRESS TARGET */
@@ -448,7 +445,7 @@
     }
 
     /* ==========================================================================
-       3. BANNER IMAGE CARD (banner.png - Exact 8:3 Replacement)
+       3. BANNER IMAGE CARD (banner.png)
        ========================================================================== */
     .banner-holder-section {
       padding: 1rem 0 0.4rem;
@@ -1353,9 +1350,10 @@
           <path class="breathe-progress-path" id="breatheProgressTriangle" d="M 105,172 L 15,16 L 195,16 Z"></path>
         </svg>
 
+        <!-- Positioned cleanly inside the widest top third of the inverted triangle -->
         <div class="breathe-hud-interior" id="breatheHudInterior">
-          <div class="breathe-hud-main-text" id="breatheMainText">READY TO ARRIVE</div>
-          <div class="breathe-hud-sub-text" id="breatheSubText">Hold button below</div>
+          <div class="breathe-hud-main-text" id="breatheMainText">READY TO<br>ARRIVE</div>
+          <div class="breathe-hud-sub-text" id="breatheSubText">Hold button<br>below</div>
         </div>
       </div>
 
@@ -1522,8 +1520,7 @@
             <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip7.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">Moment 07 / 10</div>
-                <div class="reel-caption-text">Hidden waterfall hikes and tea trails</div>
+                <div class="reel-counter-tag">Hidden waterfall hikes and tea trails</div>
               </div>
               <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Mute</button>
             </div>
@@ -2159,9 +2156,9 @@
 
     /* ==========================================================================
        INVERTED EQUILATERAL TRIANGLE BREATHWORK TIMER ENGINE
-       - Phase 1: 2.0s Inhale (Green) - Left Edge Up
-       - Phase 2: 1.0s Hold / Pause (Blue) - Top Flat Edge Across
-       - Phase 3: 3.0s Exhale (Terracotta) - Right Edge Down to Bottom Apex
+       - Phase 1: 2.0s Inhale (Green) - Left Edge Up (0% -> 33.33% of perimeter)
+       - Phase 2: 1.0s Hold / Pause (Blue) - Top Flat Edge Across (33.33% -> 66.67%)
+       - Phase 3: 3.0s Exhale (Terracotta) - Right Edge Down to Bottom Apex (66.67% -> 100%)
        Total = 6.0s
        ========================================================================== */
     const TOTAL_BREATHE_TIME = 6000;
@@ -2182,7 +2179,6 @@
     const progressTriangle = document.getElementById('breatheProgressTriangle');
     const mainText = document.getElementById('breatheMainText');
     const subText = document.getElementById('breatheSubText');
-    const hudInterior = document.getElementById('breatheHudInterior');
 
     // Compute exact SVG perimeter
     let TRIANGLE_PERIMETER = 540;
@@ -2219,62 +2215,62 @@
 
       progressTriangle.style.strokeDashoffset = TRIANGLE_PERIMETER;
       progressTriangle.style.stroke = 'var(--breathe-green)';
-      mainText.textContent = 'READY TO ARRIVE';
+      mainText.innerHTML = 'READY TO<br>ARRIVE';
       mainText.style.color = 'var(--earth-brown)';
-      subText.textContent = 'Hold continuous touch';
-      hudInterior.style.background = 'rgba(255, 255, 255, 0.82)';
-      hudInterior.style.borderColor = 'var(--border-warm)';
+      subText.innerHTML = 'Hold button<br>below';
     }
 
     function updateBreathingLoop(timestamp) {
       if (!isHolding) return;
 
       const elapsed = timestamp - breathStartTime;
-      const progress = Math.min(elapsed / TOTAL_BREATHE_TIME, 1);
-
-      const offset = TRIANGLE_PERIMETER - (progress * TRIANGLE_PERIMETER);
-      progressTriangle.style.strokeDashoffset = offset;
+      let progress = 0;
 
       if (elapsed <= INHALE_END) {
-        // Phase 1: Inhale (0s to 2s) - Left Edge Up
-        if (currentPhase !== 1) {
-          currentPhase = 1;
-        }
+        // Phase 1: Inhale (0s to 2s) - Left Edge Up (0 to 1/3)
+        currentPhase = 1;
+        const phaseRatio = Math.min(elapsed / INHALE_DURATION, 1);
+        progress = phaseRatio * (1 / 3);
+
         progressTriangle.style.stroke = 'var(--breathe-green)';
-        mainText.textContent = 'INHALE DEEPLY';
+        mainText.innerHTML = 'INHALE<br>DEEPLY';
         mainText.style.color = 'var(--breathe-green)';
-        subText.textContent = 'Filling your lungs';
-        hudInterior.style.background = 'rgba(46, 163, 111, 0.12)';
-        hudInterior.style.borderColor = 'var(--breathe-green)';
+        subText.innerHTML = 'Filling your<br>lungs';
       } else if (elapsed <= HOLD_END) {
-        // Phase 2: Hold (2s to 3s) - Top Edge Right
+        // Phase 2: Hold (2s to 3s) - Top Edge Right (1/3 to 2/3)
         if (currentPhase !== 2) {
           currentPhase = 2;
           if (navigator.vibrate) {
             try { navigator.vibrate([35]); } catch (_) {}
           }
         }
+        const phaseRatio = Math.min((elapsed - INHALE_END) / HOLD_DURATION, 1);
+        progress = (1 / 3) + (phaseRatio * (1 / 3));
+
         progressTriangle.style.stroke = 'var(--breathe-blue)';
-        mainText.textContent = 'HOLD BREATH';
+        mainText.innerHTML = 'HOLD<br>BREATH';
         mainText.style.color = 'var(--breathe-blue)';
-        subText.textContent = 'Savor the stillness';
-        hudInterior.style.background = 'rgba(59, 130, 246, 0.12)';
-        hudInterior.style.borderColor = 'var(--breathe-blue)';
+        subText.innerHTML = 'Savor the<br>stillness';
       } else {
-        // Phase 3: Exhale (3s to 6s) - Right Edge Down
+        // Phase 3: Exhale (3s to 6s) - Right Edge Down (2/3 to 1)
         if (currentPhase !== 3) {
           currentPhase = 3;
           if (navigator.vibrate) {
             try { navigator.vibrate([40, 50, 40]); } catch (_) {}
           }
         }
+        const phaseRatio = Math.min((elapsed - HOLD_END) / EXHALE_DURATION, 1);
+        progress = (2 / 3) + (phaseRatio * (1 / 3));
+
         progressTriangle.style.stroke = 'var(--breathe-red)';
-        mainText.textContent = 'SLOWLY RELEASE';
+        mainText.innerHTML = 'SLOWLY<br>RELEASE';
         mainText.style.color = 'var(--breathe-red)';
-        subText.textContent = 'Exhaling tension';
-        hudInterior.style.background = 'rgba(210, 100, 70, 0.12)';
-        hudInterior.style.borderColor = 'var(--breathe-red)';
+        subText.innerHTML = 'Exhaling<br>tension';
       }
+
+      progress = Math.min(progress, 1);
+      const offset = TRIANGLE_PERIMETER - (progress * TRIANGLE_PERIMETER);
+      progressTriangle.style.strokeDashoffset = offset;
 
       if (elapsed >= TOTAL_BREATHE_TIME) {
         completeBreathingSession();
@@ -2287,9 +2283,9 @@
       isHolding = false;
       cancelAnimationFrame(breathAnimationFrame);
 
-      mainText.textContent = 'ARRIVED';
+      mainText.innerHTML = 'ARRIVED';
       mainText.style.color = 'var(--earth-brown)';
-      subText.textContent = 'Welcome to Flowfest 2.0';
+      subText.innerHTML = 'Welcome to<br>Flowfest 2.0';
       progressTriangle.style.stroke = 'var(--earth-brown)';
 
       if (navigator.vibrate) {
@@ -2302,6 +2298,7 @@
     function unlockGateInstant(isSkipped) {
       sessionStorage.setItem('flowfest_gate_unlocked', 'true');
       gateOverlay.classList.add('dissipating');
+      window.scrollTo(0, 0);
 
       setTimeout(() => {
         gateOverlay.classList.add('unlocked');
