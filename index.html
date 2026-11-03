@@ -1337,9 +1337,9 @@
     <div class="breathe-bg-scrim" aria-hidden="true"></div>
 
     <div class="breathe-gate-content">
-      <div class="breathe-tag">Nilgiris Mountain Arrival</div>
-      <h2 class="breathe-title">Pause the scroll...</h2>
-      <p class="breathe-sub">Take one conscious breath with us to arrive at Flowfest.</p>
+      <div class="breathe-tag"></div>
+      <h2 class="breathe-title"></h2>
+      <p class="breathe-sub"></p>
 
       <!-- INVERTED EQUILATERAL TRIANGLE HUD -->
       <div class="breathe-hud-container" id="breatheHud">
@@ -1581,8 +1581,8 @@
             <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="testimonial1.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">Ananya • Bangalore</div>
-                <div class="reel-caption-text">"Arrived completely burnt out from city life. Leaving with a full heart and lifelong tribe."</div>
+                <div class="reel-counter-tag">"Preksha • Bangalore"</div>
+                <div class="reel-caption-text">"They really know how to make people feel like they belong!"</div>
               </div>
               <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Mute</button>
             </div>
@@ -1592,8 +1592,8 @@
             <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="testimonial2.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">Kabir • Mumbai</div>
-                <div class="reel-caption-text">"The acoustic music circles around the fire at Kotagiri were nothing short of pure magic."</div>
+                <div class="reel-counter-tag">"Sowmya • Bengalore"</div>
+                <div class="reel-caption-text">"It was something offbeat, divine and helps you open at cellular level"</div>
               </div>
               <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Mute</button>
             </div>
@@ -1603,8 +1603,8 @@
             <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="testimonial3.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">Meera • Chennai</div>
-                <div class="reel-caption-text">"Not your loud commercial festival. It was authentic, deeply grounded, and so safe."</div>
+                <div class="reel-counter-tag">"From Soil Reconnect"</div>
+                <div class="reel-caption-text">"Therapeutic, Never shown my gratitude to soil like this, Took me back to my childhood"</div>
               </div>
               <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Mute</button>
             </div>
@@ -1614,8 +1614,8 @@
             <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="testimonial4.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">Rohan • Hyderabad</div>
-                <div class="reel-caption-text">"Ecstatic dance in the morning mountain mist completely rewired my energy."</div>
+                <div class="reel-counter-tag">Brinda and Venkat, Perumbalur (Trichy)</div>
+                <div class="reel-caption-text">"At flowfest, You let go yourselves and the inclusivity of participants with facilitators was amazing!"</div>
               </div>
               <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Mute</button>
             </div>
@@ -1625,8 +1625,8 @@
             <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="testimonial5.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">Tanya &amp; Dev • Goa</div>
-                <div class="reel-caption-text">"The Door to Nirvana is paradise. We booked for 4 days and wished we stayed for all 10."</div>
+                <div class="reel-counter-tag">"Khanak• Bengalore"</div>
+                <div class="reel-caption-text">"As a sufi singer, we generally make people dance but at Flowfest I dance with my audience for the first time."</div>
               </div>
               <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Mute</button>
             </div>
@@ -2235,7 +2235,7 @@
         progressTriangle.style.stroke = 'var(--breathe-green)';
         mainText.innerHTML = 'INHALE<br>DEEPLY';
         mainText.style.color = 'var(--breathe-green)';
-        subText.innerHTML = 'Filling your<br>lungs';
+        subText.innerHTML = ' ';
       } else if (elapsed <= HOLD_END) {
         // Phase 2: Hold (2s to 3s) - Top Edge Right (1/3 to 2/3)
         if (currentPhase !== 2) {
@@ -2250,7 +2250,7 @@
         progressTriangle.style.stroke = 'var(--breathe-blue)';
         mainText.innerHTML = 'HOLD<br>BREATH';
         mainText.style.color = 'var(--breathe-blue)';
-        subText.innerHTML = 'Savor the<br>stillness';
+        subText.innerHTML = ' ';
       } else {
         // Phase 3: Exhale (3s to 6s) - Right Edge Down (2/3 to 1)
         if (currentPhase !== 3) {
@@ -2263,9 +2263,9 @@
         progress = (2 / 3) + (phaseRatio * (1 / 3));
 
         progressTriangle.style.stroke = 'var(--breathe-red)';
-        mainText.innerHTML = 'SLOWLY<br>RELEASE';
+        mainText.innerHTML = 'EXHALE<br>SLOWLY';
         mainText.style.color = 'var(--breathe-red)';
-        subText.innerHTML = 'Exhaling<br>tension';
+        subText.innerHTML = ' ';
       }
 
       progress = Math.min(progress, 1);
