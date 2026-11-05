@@ -240,6 +240,10 @@
       object-fit: cover;
       z-index: 0;
       pointer-events: none;
+      /* ========================================================================
+         TOGGLE VIDEO TRANSPARENCY: Adjust between 0.0 (hidden) and 1.0 (full)
+         ======================================================================== */
+      opacity: 0.85;
     }
 
     .breathe-bg-scrim {
@@ -376,7 +380,8 @@
       width: 96px;
       height: 96px;
       border-radius: 50%;
-      background: linear-gradient(145deg, #ffffff 0%, var(--bg-cream) 100%);
+      /* Matched to sticky header background color */
+      background: var(--sticky-header-bg);
       border: 2px solid var(--terracotta);
       display: flex;
       flex-direction: column;
@@ -1337,9 +1342,9 @@
     <div class="breathe-bg-scrim" aria-hidden="true"></div>
 
     <div class="breathe-gate-content">
-      <div class="breathe-tag"></div>
-      <h2 class="breathe-title"></h2>
-      <p class="breathe-sub"></p>
+      <div class="breathe-tag">Nilgiris Mountain Arrival</div>
+      <h2 class="breathe-title">Take a conscious breath to arrive at Flowfest</h2>
+      <p class="breathe-sub">2s inhale &bull; 1s hold &bull; 3s exhale</p>
 
       <!-- INVERTED EQUILATERAL TRIANGLE HUD -->
       <div class="breathe-hud-container" id="breatheHud">
