@@ -205,7 +205,7 @@
       z-index: 10000;
       padding-top: 84px;
       padding-bottom: 68px;
-      background: #000000;
+      background: var(--bg-canvas);
       color: var(--earth-brown);
       display: flex;
       flex-direction: column;
@@ -250,7 +250,7 @@
       object-fit: cover;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.3;
+      opacity: 0.15;
       transition: opacity 0.45s ease;
     }
 
@@ -258,7 +258,7 @@
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.7) 0%, rgba(247, 242, 234, 0.8) 65%, rgba(238, 229, 215, 0.8) 100%);
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.94) 0%, rgba(247, 242, 234, 0.95) 65%, rgba(238, 229, 215, 0.92) 100%);
       pointer-events: none;
       transition: opacity 0.45s ease;
     }
