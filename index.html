@@ -972,21 +972,72 @@
     }
 
     /* ==========================================================================
-       DEDICATED PRICING & PASSES SECTION
+       DEDICATED PRICING & PASSES SECTION (RIGHT-SWIPE CAROUSEL + FILTER BUTTONS)
        ========================================================================== */
     .pricing-section {
       padding: 1.6rem 0 1.2rem;
     }
 
-    .pricing-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.2rem;
-      max-width: 780px;
-      margin: 1.2rem auto 0;
+    .pricing-nav-tabs {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1rem auto 0.4rem;
+      max-width: 500px;
     }
 
-    .pricing-card {
+    .pricing-tab-btn {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border-warm);
+      border-radius: 999px;
+      padding: 0.45rem 1.15rem;
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--earth-brown);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 6px rgba(40, 28, 21, 0.05);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .pricing-tab-btn:hover {
+      background: #fbdda9;
+      border-color: var(--sunset-coral);
+      transform: translateY(-1px);
+    }
+
+    .pricing-tab-btn.active {
+      background: var(--maroon-hero);
+      color: var(--gold-luminous);
+      border-color: var(--maroon-hero);
+      box-shadow: 0 3px 12px rgba(59, 15, 23, 0.28);
+    }
+
+    .pricing-carousel-viewport {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 1.2rem 7.5vw 1.5rem;
+      gap: 1.1rem;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+    }
+
+    .pricing-carousel-viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pricing-snap-card {
+      flex: 0 0 85%;
+      max-width: 380px;
+      scroll-snap-align: center;
       background: var(--card-bg);
       border: 1px solid var(--border-warm);
       border-radius: 20px;
@@ -995,9 +1046,10 @@
       flex-direction: column;
       position: relative;
       box-shadow: 0 8px 24px -4px rgba(40, 28, 21, 0.08);
+      flex-shrink: 0;
     }
 
-    .pricing-card.featured {
+    .pricing-snap-card.featured {
       border: 2px solid var(--sunset-coral);
       background: linear-gradient(180deg, #ffffff 0%, var(--card-bg) 100%);
     }
@@ -1025,6 +1077,7 @@
       font-weight: 700;
       color: var(--earth-brown);
       margin-bottom: 0.35rem;
+      margin-top: 0.3rem;
     }
 
     .pricing-tagline {
@@ -1685,7 +1738,7 @@
         <div class="banner-card-frame">
           <img src="banner.png" 
                onerror="this.src='https://placehold.co/1600x600/f7f2ea/241812?text=banner.png+(1600x600)'" 
-               alt="Flowfest 2026 Retreat Details & Logos" 
+               alt="Flowfest 2026 Retreat Details &amp; Logos" 
                class="banner-img-responsive">
         </div>
       </section>
@@ -1789,7 +1842,7 @@
             <video class="card-media-element reel-video-element" loop playsinline preload="auto" muted src="clip5.mp4"></video>
             <div class="reel-bottom-overlay">
               <div class="reel-meta-info">
-                <div class="reel-counter-tag">ECSTATIC DANCE &MOVEMENT SESSIONS</div>
+                <div class="reel-counter-tag">ECSTATIC DANCE &amp; MOVEMENT SESSIONS</div>
                 <div class="reel-caption-text">Open up physical knots with ecstatic dance and primal rhythm </div>
               </div>
               <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
@@ -2254,7 +2307,7 @@
       </section>
 
       <!-- ======================================================================
-           10. DEDICATED PRICING & PASSES SECTION
+           10. DEDICATED PRICING & PASSES SECTION (RIGHT-SWIPE CAROUSEL + BUTTONS)
            ====================================================================== -->
       <section class="pricing-section" id="pricing">
         <div class="reels-header-area">
@@ -2263,12 +2316,24 @@
           <p class="section-segue-quote">
             Capped strictly at 35 seekers. Every pass covers all sessions, workshops, guided hikes, and accommodation.
           </p>
+
+          <!-- Interactive 3 Filter Buttons -->
+          <div class="pricing-nav-tabs" id="pricingNavTabs">
+            <button type="button" class="pricing-tab-btn active" onclick="scrollToPricingCard(0)">Shared Dorm</button>
+            <button type="button" class="pricing-tab-btn" onclick="scrollToPricingCard(1)">Private Room</button>
+            <button type="button" class="pricing-tab-btn" onclick="scrollToPricingCard(2)">Private Cottage</button>
+          </div>
+
+          <div class="swipe-hint-pill" style="display: inline-flex; margin-top: 0.65rem;">
+            Swipe to view passes →
+          </div>
         </div>
 
-        <div class="pricing-cards-grid">
+        <!-- Horizontal Snap-Swipe Carousel Viewport for 3 Passes -->
+        <div class="pricing-carousel-viewport" id="pricingViewport">
           
-          <!-- Dormitory Pass -->
-          <article class="pricing-card featured">
+          <!-- Card 1: Shared Dormitory Pass -->
+          <article class="pricing-snap-card featured" id="cardDorm">
             <div class="pricing-card-badge">Most Popular • Community Vibe</div>
             <h3 class="pricing-tier-title">Shared Dormitory Pass</h3>
             <p class="pricing-tagline">6, 8 &amp; 10-bed spacious wooden mountain dorms with personal lockers and balcony valley views.</p>
@@ -2289,23 +2354,46 @@
             </div>
           </article>
 
-          <!-- Private Room Pass -->
-          <article class="pricing-card">
+          <!-- Card 2: Private Room Pass -->
+          <article class="pricing-snap-card" id="cardRoom">
+            <div class="pricing-card-badge">Private &amp; Peaceful</div>
             <h3 class="pricing-tier-title">Private Sanctuary Pass</h3>
-            <p class="pricing-tagline">Double occupancy secluded mountain rooms and cottages for couples or companions seeking extra quietude.</p>
+            <p class="pricing-tagline">Double occupancy mountain rooms in the main lodge for couples or companions seeking comfort and quietude.</p>
             
             <ul class="pricing-inclusions-list">
-              <li>Private room or valley cottage with en-suite bath</li>
+              <li>Private double bedroom in the lodge with en-suite bath</li>
               <li>Complete access for both guests to all 10-day retreat sessions</li>
               <li>Daily morning Yoga, Kalari &amp; Pranayama journeys</li>
               <li>All sound healing, handpan &amp; evening campfire circles</li>
-              <li>Peaceful private balconies overlooking the cloud line</li>
+              <li>Balconies overlooking the Nilgiris cloud line</li>
             </ul>
 
             <div class="pricing-token-callout">
               <div class="pricing-token-tag">Seat Allocation Token: ₹500</div>
               <div class="pricing-token-detail">
                 Pay ₹500 today to lock your room. 100% credited toward your final pass balance.
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Private Cottage Pass -->
+          <article class="pricing-snap-card" id="cardCottage">
+            <div class="pricing-card-badge">Valley Seclusion</div>
+            <h3 class="pricing-tier-title">Private Cottage Pass</h3>
+            <p class="pricing-tagline">Secluded valley cottages 500m away from the main abode, enveloped in pristine nature and birdsong.</p>
+            
+            <ul class="pricing-inclusions-list">
+              <li>Standalone secluded valley cottage with en-suite bath &amp; porch</li>
+              <li>Complete access for both guests to all 10-day retreat sessions</li>
+              <li>Absolute peaceful seclusion amidst mountain trees &amp; valleys</li>
+              <li>Dedicated fire-circle access and serene tea garden views</li>
+              <li>Daily yoga, sound baths, ecstatic dance &amp; evening mehfils</li>
+            </ul>
+
+            <div class="pricing-token-callout">
+              <div class="pricing-token-tag">Seat Allocation Token: ₹500</div>
+              <div class="pricing-token-detail">
+                Pay ₹500 today to lock your cottage. 100% credited toward your final pass balance.
               </div>
             </div>
           </article>
@@ -2591,6 +2679,30 @@
       }
     }
 
+    /* ==========================================================================
+       PRICING HORIZONTAL CAROUSEL & FILTER TAB BUTTON CONTROLLER
+       ========================================================================== */
+    function scrollToPricingCard(index) {
+      const viewport = document.getElementById('pricingViewport');
+      if (!viewport) return;
+      const cards = viewport.querySelectorAll('.pricing-snap-card');
+      if (!cards[index]) return;
+
+      cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      updatePricingTabButtons(index);
+    }
+
+    function updatePricingTabButtons(activeIndex) {
+      const buttons = document.querySelectorAll('.pricing-tab-btn');
+      buttons.forEach((btn, idx) => {
+        if (idx === activeIndex) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       const videos = document.querySelectorAll('.reel-video-element');
 
@@ -2614,6 +2726,26 @@
         });
 
         videos.forEach(video => observer.observe(video));
+      }
+
+      // Sync active button on manual horizontal scroll of pricing cards
+      const pricingViewport = document.getElementById('pricingViewport');
+      if (pricingViewport && 'IntersectionObserver' in window) {
+        const pCards = pricingViewport.querySelectorAll('.pricing-snap-card');
+        const pObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const index = Array.from(pCards).indexOf(entry.target);
+              if (index !== -1) {
+                updatePricingTabButtons(index);
+              }
+            }
+          });
+        }, {
+          root: pricingViewport,
+          threshold: 0.6
+        });
+        pCards.forEach(card => pObserver.observe(card));
       }
 
       if (sessionStorage.getItem('flowfest_gate_unlocked') === 'true') {
