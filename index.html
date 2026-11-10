@@ -6,7 +6,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Flowfest 2.0 | The Nilgiris Mountain Retreat</title>
 
-  <!-- Google Fonts: Editorial Serif + Cle an Modern Sans -->
+  <!-- Google Fonts: Editorial Serif + Clean Modern Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -161,7 +161,7 @@
       font-weight: 700;
       color: var(--earth-brown);
       border: 1px solid var(--border-subtle);
-      background: #fbdda9;     /* background: rgba(255, 255, 255, 0.85);*/
+      background: #fbdda9;
       padding: 0.15rem 0.75rem;
       border-radius: 999px;
     }
@@ -194,7 +194,7 @@
     }
 
     /* ==========================================================================
-       2. LIGHT FLOWFEST BREATHWORK SCREEN (VIDEO BG + INVERTED TRIANGLE HUD)
+       2. LIGHT FLOWFEST BREATHWORK SCREEN
        ========================================================================== */
     .breathe-gate-overlay {
       position: fixed;
@@ -221,7 +221,6 @@
       transition: background-color 0.4s ease, opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), filter 1.1s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Mind-Clearing Visual Shift: Active state when pressing & holding */
     .breathe-gate-overlay.is-breathing {
       background-color: var(--sticky-header-bg) !important;
     }
@@ -241,7 +240,6 @@
       display: none !important;
     }
 
-    /* Video Background Element & Protective Light Scrim */
     .breathe-bg-video {
       position: absolute;
       inset: 0;
@@ -302,7 +300,6 @@
       line-height: 1.35;
     }
 
-    /* EYE-LEVEL INVERTED EQUILATERAL TRIANGLE HUD */
     .breathe-hud-container {
       position: relative;
       width: 210px;
@@ -340,7 +337,6 @@
       transition: stroke 0.3s ease;
     }
 
-    /* Transparent floating interior - Positioned at top safe centroid */
     .breathe-hud-interior {
       position: absolute;
       top: 38%;
@@ -377,7 +373,6 @@
       text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
     }
 
-    /* THUMB-LEVEL PRESS TARGET */
     .breathe-touch-target-wrap {
       position: relative;
       display: flex;
@@ -391,7 +386,6 @@
       width: 96px;
       height: 96px;
       border-radius: 50%;
-      /* Matched to sticky header background color */
       background: var(--sticky-header-bg);
       border: 2px solid var(--terracotta);
       display: flex;
@@ -607,7 +601,7 @@
     }
 
     /* ==========================================================================
-       5. HERO VIDEO CARD
+       5. HERO VIDEO CARD & FOUNDER VIDEO CARD
        ========================================================================== */
     .hero-video-section {
       padding: 0.8rem 0 1rem;
@@ -723,6 +717,16 @@
       100% { transform: scale(0.96); opacity: 0.8; }
     }
 
+    /* Dedicated Founder Video Section (Pre-Footer) */
+    .founder-video-section {
+      padding: 2rem 0 1.2rem;
+      text-align: center;
+    }
+
+    .founder-video-section .reels-main-title {
+      margin-bottom: 1rem;
+    }
+
     /* ==========================================================================
        6. SHARED HORIZONTAL SNAP REELS CAROUSELS
        ========================================================================== */
@@ -760,6 +764,31 @@
       margin: 0.35rem auto 0;
       line-height: 1.35;
       padding: 0 0.5rem;
+    }
+
+    /* Trust Anchor Badge for Stay Section */
+    .stay-trust-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border-warm);
+      border-radius: 999px;
+      padding: 0.3rem 0.95rem;
+      margin-top: 0.55rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--earth-brown);
+      box-shadow: 0 2px 8px rgba(40, 28, 21, 0.05);
+    }
+
+    .stay-trust-badge .star-rating {
+      color: #b84f32;
+    }
+
+    .stay-trust-badge .pipe {
+      color: var(--border-warm);
     }
 
     .swipe-hint-pill {
@@ -943,6 +972,117 @@
     }
 
     /* ==========================================================================
+       DEDICATED PRICING & PASSES SECTION
+       ========================================================================== */
+    .pricing-section {
+      padding: 1.6rem 0 1.2rem;
+    }
+
+    .pricing-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      max-width: 780px;
+      margin: 1.2rem auto 0;
+    }
+
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-warm);
+      border-radius: 20px;
+      padding: 1.6rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 8px 24px -4px rgba(40, 28, 21, 0.08);
+    }
+
+    .pricing-card.featured {
+      border: 2px solid var(--sunset-coral);
+      background: linear-gradient(180deg, #ffffff 0%, var(--card-bg) 100%);
+    }
+
+    .pricing-card-badge {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--maroon-hero);
+      color: var(--gold-luminous);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-warm);
+      white-space: nowrap;
+    }
+
+    .pricing-tier-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--earth-brown);
+      margin-bottom: 0.35rem;
+    }
+
+    .pricing-tagline {
+      font-size: 0.8rem;
+      color: var(--earth-muted);
+      margin-bottom: 1rem;
+      line-height: 1.35;
+    }
+
+    .pricing-inclusions-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-size: 0.82rem;
+      color: var(--earth-brown);
+      margin-bottom: 1.4rem;
+      flex-grow: 1;
+    }
+
+    .pricing-inclusions-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45rem;
+    }
+
+    .pricing-inclusions-list li::before {
+      content: "✓";
+      color: var(--breathe-green);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .pricing-token-callout {
+      background: rgba(251, 221, 169, 0.55);
+      border: 1px dashed var(--border-warm);
+      border-radius: 12px;
+      padding: 0.75rem;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .pricing-token-tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta-dark);
+      margin-bottom: 2px;
+    }
+
+    .pricing-token-detail {
+      font-size: 0.76rem;
+      color: var(--earth-brown);
+      line-height: 1.35;
+    }
+
+    /* ==========================================================================
        SCHEDULE & FAQ SECTIONS
        ========================================================================== */
     .schedule-reveal-card {
@@ -1043,6 +1183,149 @@
       font-size: 0.86rem;
       color: var(--earth-muted);
       line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       NON-STICKY TERMINAL LEGAL FOOTER SECTION
+       ========================================================================== */
+    .terminal-legal-section {
+      max-width: 780px;
+      margin: 2.5rem auto 1rem;
+      padding: 1.5rem 1rem 0;
+      text-align: center;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .terminal-legal-brand {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--earth-brown);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .terminal-legal-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.4rem 0.8rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .legal-open-btn {
+      background: transparent;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--earth-brown);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+      padding: 0.2rem 0.3rem;
+    }
+
+    .legal-open-btn:hover {
+      color: var(--sunset-coral);
+    }
+
+    .legal-dot-sep {
+      color: var(--border-warm);
+      font-size: 0.8rem;
+    }
+
+    .terminal-legal-copy {
+      font-size: 0.72rem;
+      color: var(--earth-muted);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       IN-PAGE LEGAL MODAL VIEWER
+       ========================================================================== */
+    .legal-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 28, 21, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 30000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .legal-modal-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .legal-modal-dialog {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-warm);
+      border-radius: 20px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .legal-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--sticky-header-bg);
+    }
+
+    .legal-modal-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--earth-brown);
+    }
+
+    .legal-modal-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--earth-brown);
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.2rem;
+    }
+
+    .legal-modal-body {
+      padding: 1.25rem 1.4rem;
+      overflow-y: auto;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--earth-brown);
+    }
+
+    .legal-modal-body h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--maroon-hero);
+      margin-top: 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .legal-modal-body p {
+      margin-bottom: 0.65rem;
     }
 
     /* ==========================================================================
@@ -1332,6 +1615,7 @@
       <li><a href="#testimonials" class="drawer-nav-link" onclick="toggleNavDrawer()">Testimonials <span>→</span></a></li>
       <li><a href="#lineup" class="drawer-nav-link" onclick="toggleNavDrawer()">Artists Line-UP <span>→</span></a></li>
       <li><a href="#stay" class="drawer-nav-link" onclick="toggleNavDrawer()">Location and Stay <span>→</span></a></li>
+      <li><a href="#pricing" class="drawer-nav-link" onclick="toggleNavDrawer()">Passes &amp; Inclusions <span>→</span></a></li>
       <li><a href="#schedule" class="drawer-nav-link" onclick="toggleNavDrawer()">Schedule <span>→</span></a></li>
       <li><a href="#faq" class="drawer-nav-link" onclick="toggleNavDrawer()">FAQ <span>→</span></a></li>
     </ul>
@@ -1339,14 +1623,9 @@
 
   <!-- ========================================================================
        2. LIGHT-THEMED CONSCIOUS BREATHWORK GATE (bwbg Video + Inverted Triangle)
-       Phase 1 (Inhale Green): 2.0s
-       Phase 2 (Hold Blue): 1.0s
-       Phase 3 (Exhale Terracotta): 3.0s
-       Total = 6.0s
        ======================================================================== -->
   <div class="breathe-gate-overlay" id="breatheGate">
     
-    <!-- Background Video Asset with Image Fallback -->
     <video class="breathe-bg-video" autoplay loop muted playsinline preload="auto" poster="bwbg.jpg">
       <source src="bwbg.mp4" type="video/mp4">
     </video>
@@ -1360,20 +1639,16 @@
       <!-- INVERTED EQUILATERAL TRIANGLE HUD -->
       <div class="breathe-hud-container" id="breatheHud">
         <svg class="breathe-svg-triangle" viewBox="0 0 210 182">
-          <!-- Static Track Path: Bottom (105, 172) -> Top Left (15, 16) -> Top Right (195, 16) -> Close -->
           <path class="breathe-track-path" d="M 105,172 L 15,16 L 195,16 Z"></path>
-          <!-- Active Animated Progress Path -->
           <path class="breathe-progress-path" id="breatheProgressTriangle" d="M 105,172 L 15,16 L 195,16 Z"></path>
         </svg>
 
-        <!-- Positioned cleanly inside the widest top third of the inverted triangle -->
         <div class="breathe-hud-interior" id="breatheHudInterior">
           <div class="breathe-hud-main-text" id="breatheMainText">READY TO<br>ARRIVE?</div>
           <div class="breathe-hud-sub-text" id="breatheSubText">Hold button<br>below</div>
         </div>
       </div>
 
-      <!-- THUMB LEVEL TOUCH TARGET -->
       <div class="breathe-touch-target-wrap" id="breatheTouchWrap"
            onmousedown="startBreathingSession(event)" 
            onmouseup="stopBreathingSession(event)"
@@ -1394,7 +1669,7 @@
   </div>
 
   <!-- ========================================================================
-       3. FIXED WATERMARK BACKGROUND (Stationary Behind All Content)
+       3. FIXED WATERMARK BACKGROUND
        ======================================================================== -->
   <div class="fixed-watermark-bg" id="watermarkBg" aria-hidden="true"></div>
 
@@ -1416,7 +1691,7 @@
       </section>
 
       <!-- ======================================================================
-           5. HERO VIDEO CARD (Scrollable Body)
+           5. HERO AFTERMOVIE CARD
            ====================================================================== -->
       <section class="hero-video-section">
         <div class="video-frame-container">
@@ -1428,19 +1703,19 @@
                  onclick="playHeroVideo()">
               <div class="video-scrim-filter"></div>
               
-              <div class="pulsing-play-button" aria-label="Play Founders Video">
+              <div class="pulsing-play-button" aria-label="Play Flowfest Aftermovie">
                 <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
               </div>
 
               <div class="video-badge-tag">
-                Why Flowfest? • Founder's Story (2 Min)
+                Flowfest 1.0 • The Aftermovie (Nilgiris)
               </div>
             </div>
 
             <iframe 
               id="heroYoutubeIframe"
               class="hero-youtube-iframe"
-              title="Anaahata Echoes Founders Talk"
+              title="Flowfest 1.0 Aftermovie"
               src=""
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
@@ -1891,7 +2166,13 @@
           <div class="reels-super-title">THE ABODE</div>
           <h2 class="reels-main-title">The Door to Nirvana, Kotagiri</h2>
           
-          <div class="swipe-hint-pill">
+          <!-- Trust Badge Anchor -->
+          <div class="stay-trust-badge">
+            <span class="star-rating">★ 4.8</span> on Google 
+            <span class="pipe">|</span> Verified Abode on Booking.com &amp; Hostelworld
+          </div>
+          
+          <div class="swipe-hint-pill" style="display: flex; margin-top: 0.85rem;">
             Swipe to explore the grounds →
           </div>
         </div>
@@ -1973,7 +2254,67 @@
       </section>
 
       <!-- ======================================================================
-           10. SCHEDULE SECTION
+           10. DEDICATED PRICING & PASSES SECTION
+           ====================================================================== -->
+      <section class="pricing-section" id="pricing">
+        <div class="reels-header-area">
+          <div class="reels-super-title">RESERVE YOUR CIRCLE</div>
+          <h2 class="reels-main-title">Retreat Passes &amp; Stay Options</h2>
+          <p class="section-segue-quote">
+            Capped strictly at 35 seekers. Every pass covers all sessions, workshops, guided hikes, and accommodation.
+          </p>
+        </div>
+
+        <div class="pricing-cards-grid">
+          
+          <!-- Dormitory Pass -->
+          <article class="pricing-card featured">
+            <div class="pricing-card-badge">Most Popular • Community Vibe</div>
+            <h3 class="pricing-tier-title">Shared Dormitory Pass</h3>
+            <p class="pricing-tagline">6, 8 &amp; 10-bed spacious wooden mountain dorms with personal lockers and balcony valley views.</p>
+            
+            <ul class="pricing-inclusions-list">
+              <li>Accommodation in wooden mountain dormitories</li>
+              <li>Unrestricted access to all 10-day workshops &amp; circles</li>
+              <li>Sufi Mehfils, Kirtan &amp; Ecstatic Dance evenings</li>
+              <li>Natural color-making &amp; pottery art supplies</li>
+              <li>Guided pine forest hikes &amp; tea estate walks</li>
+            </ul>
+
+            <div class="pricing-token-callout">
+              <div class="pricing-token-tag">Seat Allocation Token: ₹500</div>
+              <div class="pricing-token-detail">
+                Pay ₹500 today to lock your bed. 100% credited toward your final pass balance.
+              </div>
+            </div>
+          </article>
+
+          <!-- Private Room Pass -->
+          <article class="pricing-card">
+            <h3 class="pricing-tier-title">Private Sanctuary Pass</h3>
+            <p class="pricing-tagline">Double occupancy secluded mountain rooms and cottages for couples or companions seeking extra quietude.</p>
+            
+            <ul class="pricing-inclusions-list">
+              <li>Private room or valley cottage with en-suite bath</li>
+              <li>Complete access for both guests to all 10-day retreat sessions</li>
+              <li>Daily morning Yoga, Kalari &amp; Pranayama journeys</li>
+              <li>All sound healing, handpan &amp; evening campfire circles</li>
+              <li>Peaceful private balconies overlooking the cloud line</li>
+            </ul>
+
+            <div class="pricing-token-callout">
+              <div class="pricing-token-tag">Seat Allocation Token: ₹500</div>
+              <div class="pricing-token-detail">
+                Pay ₹500 today to lock your room. 100% credited toward your final pass balance.
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           11. SCHEDULE SECTION
            ====================================================================== -->
       <section class="reels-section" id="schedule">
         <div class="reels-header-area">
@@ -1993,7 +2334,7 @@
       </section>
 
       <!-- ======================================================================
-           11. FAQ SECTION (Standard Single-Open Native Accordion)
+           12. FAQ SECTION
            ====================================================================== -->
       <section class="reels-section" id="faq">
         <div class="reels-header-area">
@@ -2006,7 +2347,7 @@
 
         <div class="faq-container-list">
 
-            <details class="faq-item-card" name="flowfest-faq">
+          <details class="faq-item-card" name="flowfest-faq">
             <summary class="faq-question-btn">
               <span>Why Flowfest 2.0?</span>
               <span class="faq-toggle-icon">›</span>
@@ -2022,11 +2363,11 @@
               <span class="faq-toggle-icon">›</span>
             </summary>
             <div class="faq-answer-content">
-              Flowfest 2.0 is taking place at The Door to Nirvana Backpackers Hostel in Kotagiri,The Nilgiris. Kotagiri is well connected by Direct Bus service from Bengaluru, Chennai, Ooty and Coonoor. The nearest airport is Coimbatore (CJB), and the nearest major railway junction is Mettupalayam (MTP) / Coimbatore (CBE). 
+              Flowfest 2.0 is hosted at The Door to Nirvana Backpackers Hostel in Kotagiri—a community property rated 4.8★ on Google and verified across Booking.com and Hostelworld. Kotagiri is well connected by direct bus service from Bengaluru, Chennai, Ooty, and Coonoor. The nearest airport is Coimbatore (CJB), and the nearest major railway junction is Mettupalayam (MTP) / Coimbatore (CBE).
             </div>
           </details>
 
-            <details class="faq-item-card" name="flowfest-faq">
+          <details class="faq-item-card" name="flowfest-faq">
             <summary class="faq-question-btn">
               <span>Is Flowfest a crowded commercial festival?</span>
               <span class="faq-toggle-icon">›</span>
@@ -2062,19 +2403,80 @@
               <span class="faq-toggle-icon">›</span>
             </summary>
             <div class="faq-answer-content">
-              Please click on the form below and Pre-apply. Our team will contact you regarding the onboarding process soon.  
+              Please click on the form below and Pre-apply. Our team will contact you regarding the onboarding process soon. You can reserve your spot with a ₹500 seat-allocation token which is fully credited to your final pass.
             </div>
           </details>
 
         </div>
       </section>
 
+      <!-- ======================================================================
+           13. DEDICATED FOUNDER STORY CARD (Pre-Footer)
+           ====================================================================== -->
+      <section class="founder-video-section">
+        <div class="reels-header-area">
+          <h2 class="reels-main-title">Why We Gather at Flowfest</h2>
+        </div>
+
+        <div class="video-frame-container">
+          <div class="video-aspect-box">
+            
+            <div class="video-thumbnail-view" 
+                 id="founderThumbnailView"
+                 style="background-image: url('https://img.youtube.com/vi/81wGZZlczgo/maxresdefault.jpg');" 
+                 onclick="playFounderVideo()">
+              <div class="video-scrim-filter"></div>
+              
+              <div class="pulsing-play-button" aria-label="Play Founder Story">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+
+              <div class="video-badge-tag">
+                Founder's Story • 2 Min
+              </div>
+            </div>
+
+            <iframe 
+              id="founderYoutubeIframe"
+              class="hero-youtube-iframe"
+              title="Why We Gather at Flowfest"
+              src=""
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           14. TERMINAL NON-STICKY COMPLIANCE LEGAL FOOTER
+           ====================================================================== -->
+      <footer class="terminal-legal-section">
+        <div class="terminal-legal-brand">Anaahata Echoes • Flowfest 2.0</div>
+        
+        <div class="terminal-legal-buttons">
+          <button type="button" class="legal-open-btn" onclick="openLegalModal('terms')">Terms &amp; Conditions</button>
+          <span class="legal-dot-sep">•</span>
+          <button type="button" class="legal-open-btn" onclick="openLegalModal('refund')">Cancellation &amp; Refund</button>
+          <span class="legal-dot-sep">•</span>
+          <button type="button" class="legal-open-btn" onclick="openLegalModal('privacy')">Privacy Policy</button>
+          <span class="legal-dot-sep">•</span>
+          <button type="button" class="legal-open-btn" onclick="openLegalModal('contact')">Contact &amp; Grievances</button>
+        </div>
+
+        <p class="terminal-legal-copy">
+          © 2026 Anaahata Echoes. Hosted at The Door to Nirvana, Kotagiri, The Nilgiris, Tamil Nadu 643217. All rights reserved.
+        </p>
+      </footer>
+
     </main>
 
   </div>
 
   <!-- ========================================================================
-       12. SLIM STICKY FOOTER BAR
+       15. SLIM STICKY FOOTER BAR (Unchanged Dedicated CTAs)
        ======================================================================== -->
   <footer class="sticky-footer-bar">
     <div class="footer-button-pair">
@@ -2090,10 +2492,10 @@
   </footer>
 
   <!-- ========================================================================
-       IN-PAGE TAP-TO-EXPAND LIGHTBOX
+       IN-PAGE TAP-TO-EXPAND LIGHTBOX (With History API Back-Button Support)
        ======================================================================== -->
   <div class="media-lightbox-overlay" id="mediaLightbox" onclick="handleLightboxBackdropClick(event)">
-    <button type="button" class="lightbox-close-btn" onclick="closeMediaLightbox()" aria-label="Close Fullscreen View">✕</button>
+    <button type="button" class="lightbox-close-btn" onclick="closeMediaLightbox(true)" aria-label="Close Fullscreen View">✕</button>
     
     <button type="button" class="lightbox-nav-btn lightbox-nav-prev" onclick="navigateLightbox(-1, event)" aria-label="Previous Media">‹</button>
     
@@ -2110,17 +2512,42 @@
   </div>
 
   <!-- ========================================================================
-       SCRIPTS: TRIANGLE BREATH HUD ENGINE, OBSERVERS & GLOBAL AUDIO SYNC
+       IN-PAGE LEGAL POLICY MODAL VIEWER
+       ======================================================================== -->
+  <div class="legal-modal-backdrop" id="legalModalBackdrop" onclick="handleLegalBackdropClick(event)">
+    <div class="legal-modal-dialog">
+      <div class="legal-modal-header">
+        <h3 class="legal-modal-title" id="legalModalTitle">Policy Document</h3>
+        <button type="button" class="legal-modal-close-btn" onclick="closeLegalModal()" aria-label="Close Dialog">✕</button>
+      </div>
+      <div class="legal-modal-body" id="legalModalBody">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       SCRIPTS: ENHANCED HISTORY API, MODALS, AUDIO SYNC & OBSERVERS
        ======================================================================== -->
   <script>
-    // YouTube Hero Embed
-    const YOUTUBE_VIDEO_ID = "81wGZZlczgo";
+    // YouTube Embeds
+    const AFTERMOVIE_VIDEO_ID = "81wGZZlczgo"; // Replace with your Flowfest 1.0 Aftermovie YouTube ID
+    const FOUNDER_VIDEO_ID = "81wGZZlczgo";    // Founder talk ID
 
     function playHeroVideo() {
       const iframe = document.getElementById('heroYoutubeIframe');
       const thumbnailView = document.getElementById('heroThumbnailView');
 
-      iframe.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`;
+      iframe.src = `https://www.youtube.com/embed/${AFTERMOVIE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`;
+      thumbnailView.style.display = 'none';
+      iframe.style.display = 'block';
+    }
+
+    function playFounderVideo() {
+      const iframe = document.getElementById('founderYoutubeIframe');
+      const thumbnailView = document.getElementById('founderThumbnailView');
+
+      iframe.src = `https://www.youtube.com/embed/${FOUNDER_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`;
       thumbnailView.style.display = 'none';
       iframe.style.display = 'block';
     }
@@ -2134,10 +2561,7 @@
     }
 
     /* ==========================================================================
-       SMART AUDIO CONTROLLER (Card Soloing + Action-Oriented Labels)
-       - In-page feed: Clicking 'Unmute' only unmutes that single card and mutes others.
-       - Scrolling away: Video immediately mutes and pauses (no background audio bleed).
-       - Button text: Shows 'Unmute' when silent, 'Mute' when playing audio.
+       SMART AUDIO CONTROLLER
        ========================================================================== */
     function toggleVideoMute(btn) {
       const card = btn.closest('.reel-snap-card, .stay-square-card');
@@ -2147,7 +2571,6 @@
 
       const willUnmute = targetVid.muted;
 
-      // Soloing: Mute all other videos on the page feed first
       const allVideos = document.querySelectorAll('.reel-video-element');
       allVideos.forEach(v => {
         if (v !== targetVid) {
@@ -2160,7 +2583,6 @@
         }
       });
 
-      // Toggle target video
       targetVid.muted = !willUnmute;
       btn.textContent = targetVid.muted ? 'Unmute' : 'Mute';
 
@@ -2180,10 +2602,8 @@
             const soundBtn = parent ? parent.querySelector('.sound-toggle-btn') : null;
 
             if (entry.isIntersecting) {
-              // Play silently when entering viewport
               video.play().catch(() => {});
             } else {
-              // Auto-mute and pause when exiting view to prevent sound bleed
               video.pause();
               video.muted = true;
               if (soundBtn) soundBtn.textContent = 'Unmute';
@@ -2205,24 +2625,20 @@
     });
 
     /* ==========================================================================
-       INVERTED EQUILATERAL TRIANGLE BREATHWORK TIMER ENGINE
-       - Phase 1: 2.0s Inhale (Green) - Left Edge Up (0% -> 33.33% of perimeter)
-       - Phase 2: 1.0s Hold / Pause (Blue) - Top Flat Edge Across (33.33% -> 66.67%)
-       - Phase 3: 3.0s Exhale (Terracotta) - Right Edge Down to Bottom Apex (66.67% -> 100%)
-       Total = 6.0s
+       BREATHWORK TIMER ENGINE
        ========================================================================== */
     const TOTAL_BREATHE_TIME = 6000;
     const INHALE_DURATION = 2000;
     const HOLD_DURATION = 1000;
     const EXHALE_DURATION = 3000;
 
-    const INHALE_END = INHALE_DURATION;             // 2000ms
-    const HOLD_END = INHALE_DURATION + HOLD_DURATION; // 3000ms
+    const INHALE_END = INHALE_DURATION;
+    const HOLD_END = INHALE_DURATION + HOLD_DURATION;
 
     let isHolding = false;
     let breathStartTime = null;
     let breathAnimationFrame = null;
-    let currentPhase = 0; // 0: ready, 1: inhale, 2: hold, 3: exhale
+    let currentPhase = 0;
 
     const gateOverlay = document.getElementById('breatheGate');
     const touchWrap = document.getElementById('breatheTouchWrap');
@@ -2230,7 +2646,6 @@
     const mainText = document.getElementById('breatheMainText');
     const subText = document.getElementById('breatheSubText');
 
-    // Compute exact SVG perimeter
     let TRIANGLE_PERIMETER = 540;
     if (progressTriangle && progressTriangle.getTotalLength) {
       TRIANGLE_PERIMETER = progressTriangle.getTotalLength();
@@ -2279,7 +2694,6 @@
       let progress = 0;
 
       if (elapsed <= INHALE_END) {
-        // Phase 1: Inhale (0s to 2s) - Left Edge Up (0 to 1/3)
         currentPhase = 1;
         const phaseRatio = Math.min(elapsed / INHALE_DURATION, 1);
         progress = phaseRatio * (1 / 3);
@@ -2289,7 +2703,6 @@
         mainText.style.color = 'var(--breathe-green)';
         subText.innerHTML = ' ';
       } else if (elapsed <= HOLD_END) {
-        // Phase 2: Hold (2s to 3s) - Top Edge Right (1/3 to 2/3)
         if (currentPhase !== 2) {
           currentPhase = 2;
           if (navigator.vibrate) {
@@ -2304,7 +2717,6 @@
         mainText.style.color = 'var(--breathe-blue)';
         subText.innerHTML = ' ';
       } else {
-        // Phase 3: Exhale (3s to 6s) - Right Edge Down (2/3 to 1)
         if (currentPhase !== 3) {
           currentPhase = 3;
           if (navigator.vibrate) {
@@ -2358,7 +2770,7 @@
     }
 
     /* ==========================================================================
-       LIGHTBOX EXPANDER CONTROLLER
+       LIGHTBOX EXPANDER CONTROLLER WITH HARDWARE BACK-BUTTON SUPPORT
        ========================================================================== */
     let mediaLightbox = null;
     let lightboxMediaContainer = null;
@@ -2451,6 +2863,9 @@
 
       renderLightboxItem(targetIndex);
       mediaLightbox.classList.add('active');
+
+      // Push history state for mobile hardware back button handling
+      history.pushState({ lightboxOpen: true }, '', '#view-media');
     }
 
     function navigateLightbox(direction, e) {
@@ -2467,7 +2882,7 @@
       renderLightboxItem(newIndex);
     }
 
-    function closeMediaLightbox() {
+    function closeMediaLightbox(triggerHistoryBack = false) {
       const { mediaLightbox, lightboxMediaContainer } = getLightboxElements();
       if (!mediaLightbox || !mediaLightbox.classList.contains('active')) return;
 
@@ -2483,22 +2898,29 @@
       currentLightboxItems = [];
       currentLightboxIndex = -1;
 
-      const allVideos = document.querySelectorAll('.reel-video-element');
-      allVideos.forEach(vid => {
-        const rect = vid.getBoundingClientRect();
-        const inView = rect.top < window.innerHeight && rect.bottom > 0 && rect.left < window.innerWidth && rect.right > 0;
-        if (inView) {
-          vid.muted = isGlobalMuted;
-          vid.play().catch(() => {});
-        }
-      });
+      // Programmatic back if closed via UI close button or backdrop tap
+      if (triggerHistoryBack && window.location.hash === '#view-media') {
+        history.back();
+      }
     }
 
     function handleLightboxBackdropClick(e) {
       if (e.target === mediaLightbox || e.target === lightboxMediaContainer) {
-        closeMediaLightbox();
+        closeMediaLightbox(true);
       }
     }
+
+    // Hardware Back Button Event Listener
+    window.addEventListener('popstate', (e) => {
+      const { mediaLightbox } = getLightboxElements();
+      if (mediaLightbox && mediaLightbox.classList.contains('active')) {
+        closeMediaLightbox(false);
+      }
+      const legalModal = document.getElementById('legalModalBackdrop');
+      if (legalModal && legalModal.classList.contains('active')) {
+        closeLegalModal(false);
+      }
+    });
 
     let lbTouchStartX = 0;
     let lbTouchStartY = 0;
@@ -2522,14 +2944,14 @@
             navigateLightbox(-1);
           }
         } else if (Math.abs(deltaY) > 60 && Math.abs(deltaY) > Math.abs(deltaX)) {
-          closeMediaLightbox();
+          closeMediaLightbox(true);
         }
       }
     }, { passive: true });
 
     window.addEventListener('wheel', (e) => {
-      if (mediaLightbox && mediaLightbox.classList.contains('active') && Math.abs(e.deltaY) > 30) {
-        closeMediaLightbox();
+      if (mediaLightbox && mediaLightbox.classList.contains('active')) {
+        closeMediaLightbox(true);
       }
     }, { passive: true });
 
@@ -2547,6 +2969,93 @@
         });
       });
     });
+
+    /* ==========================================================================
+       LEGAL MODAL DOCUMENTS CONTROLLER (Razorpay KYC Compliant)
+       ========================================================================== */
+    const LEGAL_DOCS = {
+      terms: {
+        title: "Terms & Conditions",
+        content: `
+          <h4>1. Retreat Nature & Decorum</h4>
+          <p>Flowfest 2.0 is an intentional, conscious community gathering centered on creative expression, mindful arts, and nature reconnection. Participants agree to honor a peaceful, inclusive space free from harassment, violence, and non-consensual behavior.</p>
+          <h4>2. Substance & Alcohol Policy</h4>
+          <p>To uphold the sanctity and depth of the breathwork, meditation, and movement sessions, commercial alcohol consumption and illegal substances are strictly prohibited inside the retreat workshops and communal circle areas.</p>
+          <h4>3. Age & Identification</h4>
+          <p>All participants must be at least 18 years of age. A valid Government-issued photo identification (Aadhaar, Passport, or Voter ID) must be presented upon check-in at The Door to Nirvana.</p>
+          <h4>4. Force Majeure & Itinerary Modifications</h4>
+          <p>The organizers reserve the right to alter workshop sequences, facilitator timing, or outdoor hike routes in the event of severe mountain weather or regulatory advisories to ensure guest safety.</p>
+        `
+      },
+      refund: {
+        title: "Cancellation & Refund Policy",
+        content: `
+          <h4>1. Seat Allocation Token (₹500)</h4>
+          <p>The ₹500 token is collected to reserve your chosen bed or room allocation at Flowfest 2.0. This amount is 100% credited against your final pass invoice.</p>
+          <h4>2. Cancellation Guidelines</h4>
+          <p>Because Flowfest is strictly capped at 35 participants to preserve depth and intimacy, spots are held on an exclusive basis:</p>
+          <p>• Cancellations requested 15 days or more prior to retreat commencement (on or before December 9, 2026): Eligible for a full refund of payments made toward the pass.</p>
+          <p>• Cancellations requested within 14 days of the retreat: Token and advance payments are non-refundable but transferable to an approved replacement guest upon prior written notification.</p>
+          <h4>3. Refund Processing Timeline</h4>
+          <p>Any approved refund will be processed and credited back to the original method of payment within 5 to 7 business days from the date of confirmation.</p>
+        `
+      },
+      privacy: {
+        title: "Privacy Policy",
+        content: `
+          <h4>1. Information We Collect</h4>
+          <p>When you apply for an invite or reserve a pass, we collect your Full Name, Email Address, WhatsApp Phone Number, and accommodation preferences solely for retreat management, gate check-in, and emergency communications.</p>
+          <h4>2. Payment Security</h4>
+          <p>Payment information is processed via PCI-DSS compliant payment gateways (Razorpay). Anaahata Echoes does not store your debit/credit card numbers or banking passwords.</p>
+          <h4>3. Data Sharing</h4>
+          <p>Your personal information is kept strictly confidential and will never be rented, sold, or shared with third-party advertisers.</p>
+        `
+      },
+      contact: {
+        title: "Contact Us & Grievances",
+        content: `
+          <h4>Host Entity</h4>
+          <p><strong>Anaahata Echoes</strong></p>
+          <p>Retreat Venue: The Door to Nirvana Backpackers Hostel, Kotagiri, The Nilgiris, Tamil Nadu, 643217, India.</p>
+          <h4>Direct Support Channels</h4>
+          <p>• WhatsApp / Phone: +91 88054 79801</p>
+          <p>• Support Email: anaahataechoes@gmail.com</p>
+          <p>• Operating Hours: Monday to Saturday, 10:00 AM – 7:00 PM IST</p>
+        `
+      }
+    };
+
+    function openLegalModal(type) {
+      const modal = document.getElementById('legalModalBackdrop');
+      const title = document.getElementById('legalModalTitle');
+      const body = document.getElementById('legalModalBody');
+      const doc = LEGAL_DOCS[type];
+
+      if (!modal || !doc) return;
+
+      title.textContent = doc.title;
+      body.innerHTML = doc.content;
+      modal.classList.add('active');
+
+      history.pushState({ legalModalOpen: true }, '', '#policy-view');
+    }
+
+    function closeLegalModal(triggerHistoryBack = true) {
+      const modal = document.getElementById('legalModalBackdrop');
+      if (!modal || !modal.classList.contains('active')) return;
+
+      modal.classList.remove('active');
+
+      if (triggerHistoryBack && window.location.hash === '#policy-view') {
+        history.back();
+      }
+    }
+
+    function handleLegalBackdropClick(e) {
+      if (e.target.id === 'legalModalBackdrop') {
+        closeLegalModal(true);
+      }
+    }
   </script>
 </body>
 </html>
