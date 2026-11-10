@@ -978,46 +978,6 @@
       padding: 1.6rem 0 1.2rem;
     }
 
-    .pricing-nav-tabs {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin: 1rem auto 0.4rem;
-      max-width: 500px;
-    }
-
-    .pricing-tab-btn {
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid var(--border-warm);
-      border-radius: 999px;
-      padding: 0.45rem 1.15rem;
-      font-family: var(--font-sans);
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--earth-brown);
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 2px 6px rgba(40, 28, 21, 0.05);
-      user-select: none;
-      -webkit-user-select: none;
-    }
-
-    .pricing-tab-btn:hover {
-      background: #fbdda9;
-      border-color: var(--sunset-coral);
-      transform: translateY(-1px);
-    }
-
-    .pricing-tab-btn.active {
-      background: var(--maroon-hero);
-      color: var(--gold-luminous);
-      border-color: var(--maroon-hero);
-      box-shadow: 0 3px 12px rgba(59, 15, 23, 0.28);
-    }
 
     .pricing-carousel-viewport {
       display: flex;
@@ -2317,12 +2277,6 @@
             Capped strictly at 35 seekers. Every pass covers all sessions, workshops, guided hikes, and accommodation.
           </p>
 
-          <!-- Interactive 3 Filter Buttons -->
-          <div class="pricing-nav-tabs" id="pricingNavTabs">
-            <button type="button" class="pricing-tab-btn active" onclick="scrollToPricingCard(0)">Shared Dorm</button>
-            <button type="button" class="pricing-tab-btn" onclick="scrollToPricingCard(1)">Private Room</button>
-            <button type="button" class="pricing-tab-btn" onclick="scrollToPricingCard(2)">Private Cottage</button>
-          </div>
 
           <div class="swipe-hint-pill" style="display: inline-flex; margin-top: 0.65rem;">
             Swipe to view passes →
@@ -2679,29 +2633,6 @@
       }
     }
 
-    /* ==========================================================================
-       PRICING HORIZONTAL CAROUSEL & FILTER TAB BUTTON CONTROLLER
-       ========================================================================== */
-    function scrollToPricingCard(index) {
-      const viewport = document.getElementById('pricingViewport');
-      if (!viewport) return;
-      const cards = viewport.querySelectorAll('.pricing-snap-card');
-      if (!cards[index]) return;
-
-      cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      updatePricingTabButtons(index);
-    }
-
-    function updatePricingTabButtons(activeIndex) {
-      const buttons = document.querySelectorAll('.pricing-tab-btn');
-      buttons.forEach((btn, idx) => {
-        if (idx === activeIndex) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
-    }
 
     document.addEventListener('DOMContentLoaded', () => {
       const videos = document.querySelectorAll('.reel-video-element');
@@ -2728,25 +2659,6 @@
         videos.forEach(video => observer.observe(video));
       }
 
-      // Sync active button on manual horizontal scroll of pricing cards
-      const pricingViewport = document.getElementById('pricingViewport');
-      if (pricingViewport && 'IntersectionObserver' in window) {
-        const pCards = pricingViewport.querySelectorAll('.pricing-snap-card');
-        const pObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const index = Array.from(pCards).indexOf(entry.target);
-              if (index !== -1) {
-                updatePricingTabButtons(index);
-              }
-            }
-          });
-        }, {
-          root: pricingViewport,
-          threshold: 0.6
-        });
-        pCards.forEach(card => pObserver.observe(card));
-      }
 
       if (sessionStorage.getItem('flowfest_gate_unlocked') === 'true') {
         const gate = document.getElementById('breatheGate');
