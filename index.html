@@ -1575,23 +1575,24 @@
       }
     }
   </style>
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '854307653625644');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=854307653625644&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '854307653625644');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=854307653625644&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -2535,16 +2536,16 @@ src="https://www.facebook.com/tr?id=854307653625644&ev=PageView&noscript=1"
   </div>
 
   <!-- ========================================================================
-       15. SLIM STICKY FOOTER BAR (Unchanged Dedicated CTAs)
+       15. SLIM STICKY FOOTER BAR (Razorpay + WhatsApp CTAs)
        ======================================================================== -->
   <footer class="sticky-footer-bar">
     <div class="footer-button-pair">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScEFEb_eYk4uB27gQ4DvmVu5_hWT7vHFg-Hm6v6WFF6FWVO2g/viewform?usp=sharing&ouid=109029524967509663232" target="_blank" class="btn-apply-primary">
+      <a href="https://rzp.io/rzp/FLOWFEST2026" target="_blank" rel="noopener noreferrer" class="btn-apply-primary" onclick="handleApplyClick(this)">
         <span>Apply For Your Invite</span>
         <span>→</span>
       </a>
 
-      <a href="https://wa.me/918805479801?text=Hi%20Anaahata%20Echoes,%20I%20want%20to%20know%20more%20about%20Flowfest%202026%20at%20Kotagiri" target="_blank" class="btn-chat-hosts">
+      <a href="https://wa.me/918805479801?text=Hi%20Anaahata%20Echoes,%20I%20want%20to%20know%20more%20about%20Flowfest%202026%20at%20Kotagiri" target="_blank" rel="noopener noreferrer" class="btn-chat-hosts" onclick="handleChatHostsClick()">
         <span>Chat with Hosts</span>
       </a>
     </div>
@@ -2563,7 +2564,7 @@ src="https://www.facebook.com/tr?id=854307653625644&ev=PageView&noscript=1"
     <button type="button" class="lightbox-nav-btn lightbox-nav-next" onclick="navigateLightbox(1, event)" aria-label="Next Media">›</button>
 
     <div class="lightbox-floating-cta-wrap">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc0SFBL7gRpuElOVecEHUXl8MkM_01W0LOuRfbAPZn8Qt5reA/viewform?usp=header" target="_blank" class="lightbox-cta-btn">
+      <a href="https://rzp.io/rzp/FLOWFEST2026" target="_blank" rel="noopener noreferrer" class="lightbox-cta-btn" onclick="handleApplyClick(this)">
         <span>Apply For Your Invite</span>
         <span>→</span>
       </a>
@@ -2586,9 +2587,90 @@ src="https://www.facebook.com/tr?id=854307653625644&ev=PageView&noscript=1"
   </div>
 
   <!-- ========================================================================
-       SCRIPTS: ENHANCED HISTORY API, MODALS, AUDIO SYNC & OBSERVERS
+       SCRIPTS: META ATTRIBUTION, HISTORY API, MODALS, AUDIO SYNC & OBSERVERS
        ======================================================================== -->
   <script>
+    /* ==========================================================================
+       META PIXEL & CROSS-DOMAIN (_fbp / _fbc) ATTRIBUTION ENGINE
+       ========================================================================== */
+    function getMetaCookie(name) {
+      try {
+        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        return match ? decodeURIComponent(match[2]) : '';
+      } catch (_) {
+        return '';
+      }
+    }
+
+    function getOrBuildFbc() {
+      let fbc = getMetaCookie('_fbc');
+      if (fbc) return fbc;
+
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const fbclid = urlParams.get('fbclid');
+        if (fbclid) {
+          fbc = `fb.1.${Date.now()}.${fbclid}`;
+          document.cookie = `_fbc=${encodeURIComponent(fbc)}; path=/; max-age=7776000; SameSite=Lax`;
+          return fbc;
+        }
+      } catch (_) {}
+      return '';
+    }
+
+    function buildTrackedRazorpayUrl(baseHref) {
+      try {
+        const url = new URL(baseHref);
+        const fbp = getMetaCookie('_fbp');
+        const fbc = getOrBuildFbc();
+        if (fbp) url.searchParams.set('fbp', fbp);
+        if (fbc) url.searchParams.set('fbc', fbc);
+        return url.toString();
+      } catch (_) {
+        return baseHref;
+      }
+    }
+
+    function syncRazorpayTrackingLinks() {
+      const rzpLinks = document.querySelectorAll('a[href*="rzp.io/rzp/FLOWFEST2026"]');
+      rzpLinks.forEach(link => {
+        link.href = buildTrackedRazorpayUrl(link.href);
+      });
+    }
+
+    function handleApplyClick(anchorEl) {
+      if (anchorEl && anchorEl.href) {
+        anchorEl.href = buildTrackedRazorpayUrl(anchorEl.href);
+      }
+      if (typeof fbq === 'function') {
+        try {
+          fbq('track', 'InitiateCheckout', {
+            content_name: 'Flowfest 2.0 Invite Apply',
+            currency: 'INR',
+            value: 500
+          });
+        } catch (_) {}
+      }
+    }
+
+    function handleChatHostsClick() {
+      if (typeof fbq === 'function') {
+        try {
+          fbq('track', 'Contact', {
+            content_name: 'Chat with Hosts WhatsApp'
+          });
+        } catch (_) {}
+      }
+    }
+
+    // Initialize _fbc immediately on page load and sync links once Pixel sets _fbp
+    getOrBuildFbc();
+    window.addEventListener('DOMContentLoaded', () => {
+      syncRazorpayTrackingLinks();
+      setTimeout(syncRazorpayTrackingLinks, 1500);
+      setTimeout(syncRazorpayTrackingLinks, 3500);
+    });
+
     // YouTube Embeds
     const AFTERMOVIE_VIDEO_ID = "81wGZZlczgo"; // Replace with your Flowfest 1.0 Aftermovie YouTube ID
     const FOUNDER_VIDEO_ID = "81wGZZlczgo";    // Founder talk ID
@@ -2821,7 +2903,19 @@ src="https://www.facebook.com/tr?id=854307653625644&ev=PageView&noscript=1"
     }
 
     function unlockGateInstant(isSkipped) {
+      const wasAlreadyUnlocked = sessionStorage.getItem('flowfest_gate_unlocked') === 'true';
       sessionStorage.setItem('flowfest_gate_unlocked', 'true');
+
+      if (!wasAlreadyUnlocked && typeof fbq === 'function') {
+        try {
+          fbq('track', 'ViewContent', {
+            content_name: 'Breathing Screen Passed',
+            gate_action: isSkipped ? 'skipped' : 'completed'
+          });
+        } catch (_) {}
+      }
+
+      syncRazorpayTrackingLinks();
       gateOverlay.classList.add('dissipating');
       window.scrollTo(0, 0);
 
