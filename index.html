@@ -853,14 +853,59 @@
       flex: 0 0 85%;
       max-width: 380px;
       scroll-snap-align: center;
-      aspect-ratio: 4 / 5;
+      display: flex;
+      flex-direction: column;
       border-radius: 18px;
       overflow: hidden;
       position: relative;
-      background: #141a16;
+      background: var(--card-bg);
       border: 1px solid var(--border-warm);
       box-shadow: 0 14px 28px -6px rgba(40, 28, 21, 0.16);
       cursor: pointer;
+    }
+
+    .artist-media-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: #141a16;
+      overflow: hidden;
+    }
+
+    .artist-media-controls {
+      position: absolute;
+      bottom: 0.75rem;
+      right: 0.85rem;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .artist-attached-info {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border-warm);
+      padding: 0.85rem 1rem 0.95rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .artist-attached-name {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--earth-brown);
+      line-height: 1.2;
+    }
+
+    .artist-attached-art {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--terracotta);
+      letter-spacing: 0.02em;
+      line-height: 1.3;
     }
 
     .artist-mist-veil {
@@ -2028,13 +2073,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist1.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Music &amp; Sacred Vocals • 01 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Harmonic voice medicine and twilight acoustic circles by the fire</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist1.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Music &amp; Sacred Vocals</div>
             </div>
           </article>
 
@@ -2042,13 +2089,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist2.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Ecstatic Dance &amp; Movement • 02 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Somatic movement therapy &amp; uninhibited expressive release</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist2.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Ecstatic Dance &amp; Movement</div>
             </div>
           </article>
 
@@ -2056,13 +2105,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist3.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Sound Journeys &amp; Handpan • 03 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Resonant frequency healing and Tibetan singing bowl journeys</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist3.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Sound Journeys &amp; Handpan</div>
             </div>
           </article>
 
@@ -2070,13 +2121,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist4.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Primal Breathwork &amp; Yoga • 04 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Sunrise pranayama &amp; nervous system restoration in the mountain mist</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist4.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Primal Breathwork &amp; Yoga</div>
             </div>
           </article>
 
@@ -2084,13 +2137,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist5.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Expressive Arts &amp; Clay • 05 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Tactile grounding through natural earth pigments &amp; canvas work</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist5.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Expressive Arts &amp; Clay</div>
             </div>
           </article>
 
@@ -2098,13 +2153,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist6.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Folk Strings &amp; Poetry • 06 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Soulful storytelling, acoustic rhythms, and sunset spoken word</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist6.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Folk Strings &amp; Poetry</div>
             </div>
           </article>
 
@@ -2112,13 +2169,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist7.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Meditative Stillness • 07 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Vipassana-inspired silence circles &amp; pine forest sensory walking</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist7.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Meditative Stillness</div>
             </div>
           </article>
 
@@ -2126,13 +2185,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist8.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Organic Beats &amp; Live Loop • 08 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Hypnotic layered ambient sets fusing organic flutes with digital bass</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist8.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Organic Beats &amp; Live Loop</div>
             </div>
           </article>
 
@@ -2140,13 +2201,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist9.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Cacao &amp; Ritual Facilitation • 09 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Heart-opening cacao ceremonies and intention setting circles</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist9.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Cacao &amp; Ritual Facilitation</div>
             </div>
           </article>
 
@@ -2154,13 +2217,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist10.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Percussion &amp; Tribal Rhythm • 10 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Djembe drumming circles connecting your heartbeat to the mountain</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist10.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Percussion &amp; Tribal Rhythm</div>
             </div>
           </article>
 
@@ -2168,13 +2233,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist11.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Sufi &amp; Qawwali Mysticism • 11 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Whirling, devotion, and ecstasy through sacred ancient verses</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist11.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Sufi &amp; Qawwali Mysticism</div>
             </div>
           </article>
 
@@ -2182,13 +2249,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist12.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Nature Foraging &amp; Flora • 12 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Wild herb identification and botanical tea alchemy across Kotagiri</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist12.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Nature Foraging &amp; Flora</div>
             </div>
           </article>
 
@@ -2196,13 +2265,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist13.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Soundscape Ambient Synth • 13 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Live modular sound scapes crafted for deep contemplative lying down</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist13.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Soundscape Ambient Synth</div>
             </div>
           </article>
 
@@ -2210,13 +2281,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist14.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Theater &amp; Vulnerability Lab • 14 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Improvised drama games stripping away social masks and conditioning</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist14.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Theater &amp; Vulnerability Lab</div>
             </div>
           </article>
 
@@ -2224,13 +2297,15 @@
             <div class="artist-mist-veil">
               <div class="mist-title">Artist Revealing Soon</div>
             </div>
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist15.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Sacred Geometry &amp; Visuals • 15 / 15</div>
-                <div class="artist-name-line">Artist Name <span class="artist-dates">[INSERT_ARTIST_DATES_HERE]</span></div>
-                <div class="reel-caption-text">Light projection artistry and collaborative mandalas under the stars</div>
+            <div class="artist-media-box">
+              <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="artist15.mp4#t=0.1"></video>
+              <div class="artist-media-controls">
+                <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
               </div>
+            </div>
+            <div class="artist-attached-info">
+              <div class="artist-attached-name">Artist Name</div>
+              <div class="artist-attached-art">Sacred Geometry &amp; Visuals</div>
             </div>
           </article>
 
@@ -2799,7 +2874,7 @@
        SMART AUDIO CONTROLLER
        ========================================================================== */
     function toggleVideoMute(btn) {
-      const card = btn.closest('.reel-snap-card, .stay-square-card');
+      const card = btn.closest('.reel-snap-card, .artist-snap-card, .stay-square-card');
       if (!card) return;
       const targetVid = card.querySelector('.reel-video-element');
       if (!targetVid) return;
@@ -2810,7 +2885,7 @@
       allVideos.forEach(v => {
         if (v !== targetVid) {
           v.muted = true;
-          const parent = v.closest('.reel-snap-card, .stay-square-card');
+          const parent = v.closest('.reel-snap-card, .artist-snap-card, .stay-square-card');
           if (parent) {
             const b = parent.querySelector('.sound-toggle-btn');
             if (b) b.textContent = 'Unmute';
@@ -2847,7 +2922,7 @@
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             const video = entry.target;
-            const parent = video.closest('.reel-snap-card, .stay-square-card');
+            const parent = video.closest('.reel-snap-card, .artist-snap-card, .stay-square-card');
             const soundBtn = parent ? parent.querySelector('.sound-toggle-btn') : null;
 
             if (entry.isIntersecting) {
