@@ -951,6 +951,20 @@
       cursor: pointer;
     }
 
+    .schedule-poster-card {
+      flex: 0 0 85%;
+      max-width: 380px;
+      scroll-snap-align: center;
+      aspect-ratio: 4 / 5;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--border-warm);
+      box-shadow: 0 14px 28px -6px rgba(40, 28, 21, 0.16);
+      cursor: pointer;
+    }
+
     .card-media-element {
       width: 100%;
       height: 100%;
@@ -2546,7 +2560,7 @@
       </section>
 
       <!-- ======================================================================
-           11. SCHEDULE SECTION
+           11. SCHEDULE SECTION (day1.jpg - day11.jpg)
            ====================================================================== -->
       <section class="reels-section" id="schedule">
         <div class="reels-header-area">
@@ -2555,13 +2569,58 @@
           <p class="section-segue-quote">
             Flowfest moves like an organic wave across the mountains - balancing stillness and dynamism.
           </p>
+
+          <div class="swipe-hint-pill">
+            Click to expand | Swipe to explore →
+          </div>
         </div>
 
-        <div class="schedule-reveal-card">
-          <div class="schedule-badge-pill">Unveiling Soon</div>
-          <p class="schedule-reveal-text">
-            The full 10-day itinerary—including Morning Yoga, meditation and Kalari sessions, expressive art circles, Live Music sessions, will be revealed shortly!
-          </p>
+        <div class="reels-carousel-viewport" id="scheduleViewport">
+          
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day1.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+1+•+24+Dec'" alt="Flowfest 2.0 Schedule Day 1 (24 Dec)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day2.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+2+•+25+Dec'" alt="Flowfest 2.0 Schedule Day 2 (25 Dec)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day3.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+3+•+26+Dec'" alt="Flowfest 2.0 Schedule Day 3 (26 Dec)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day4.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+4+•+27+Dec'" alt="Flowfest 2.0 Schedule Day 4 (27 Dec)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day5.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+5+•+28+Dec'" alt="Flowfest 2.0 Schedule Day 5 (28 Dec)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day6.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+6+•+29+Dec'" alt="Flowfest 2.0 Schedule Day 6 (29 Dec)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day7.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+7+•+30+Dec'" alt="Flowfest 2.0 Schedule Day 7 (30 Dec)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day8.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+8+•+31+Dec'" alt="Flowfest 2.0 Schedule Day 8 (31 Dec)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day9.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+9+•+1+Jan'" alt="Flowfest 2.0 Schedule Day 9 (1 Jan)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day10.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+10+•+2+Jan'" alt="Flowfest 2.0 Schedule Day 10 (2 Jan)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day11.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+11+•+3+Jan'" alt="Flowfest 2.0 Schedule Day 11 (3 Jan)">
+          </article>
+
         </div>
       </section>
 
@@ -3181,7 +3240,7 @@
       const viewport = card.closest('.reels-carousel-viewport');
       if (!viewport) return;
 
-      const cardElements = Array.from(viewport.querySelectorAll('.reel-snap-card, .artist-snap-card, .stay-square-card'));
+      const cardElements = Array.from(viewport.querySelectorAll('.reel-snap-card, .artist-snap-card, .stay-square-card, .schedule-poster-card'));
       currentLightboxItems = [];
       let targetIndex = 0;
 
@@ -3294,7 +3353,7 @@
     }, { passive: true });
 
     document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.reel-snap-card, .artist-snap-card, .stay-square-card');
+      const cards = document.querySelectorAll('.reel-snap-card, .artist-snap-card, .stay-square-card, .schedule-poster-card');
       cards.forEach(card => {
         card.addEventListener('click', (e) => {
           if (e.target.closest('.sound-toggle-btn')) return;
