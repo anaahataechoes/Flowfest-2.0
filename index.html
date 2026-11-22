@@ -13,6 +13,11 @@
 
   <style>
     /* ==========================================================================
+       BREATHWORK DISPLAY CONFIG (GITHUB 1 / 0 TOGGLE — KEEP IN SYNC WITH <script>)
+       - Entry Full-Screen Gate:  1 = show on load, 0 = disabled/hidden
+       - Inner Breathwork Block:  1 = show above #pricing, 0 = disabled/hidden
+       ========================================================================== */
+    /* ==========================================================================
        artist reveal (MASTER ON/OFF TOGGLE)
        - To HIDE artists behind mountain mist: set --artist-mist-display: flex;
        - To REVEAL all artists (turn mist OFF): set --artist-mist-display: none;
@@ -461,6 +466,210 @@
     }
 
     .breathe-skip-btn:active {
+      transform: translateY(0);
+    }
+
+    /* GitHub 1 / 0 Breathwork Visibility Controls */
+    html.gate-disabled #breatheGate {
+      display: none !important;
+    }
+
+    html.inner-breathe-disabled #innerBreathworkSection {
+      display: none !important;
+    }
+
+    /* ==========================================================================
+       2B. VOLUNTARY INNER BREATHWORK SECTION (Non-Overlapping, Above #pricing)
+       ========================================================================== */
+    .inner-breathwork-section {
+      padding: 1.5rem 0 1.2rem;
+    }
+
+    .inner-breathwork-card {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 1.65rem 1.25rem 1.75rem;
+      border-radius: 20px;
+      background: linear-gradient(155deg, rgba(255, 252, 248, 0.96) 0%, rgba(254, 232, 193, 0.72) 55%, rgba(238, 229, 215, 0.9) 100%);
+      border: 1px solid var(--border-warm);
+      box-shadow: 0 10px 28px -6px rgba(40, 28, 21, 0.09);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+
+    .inner-breathwork-card.is-breathing {
+      background: var(--sticky-header-bg);
+      border-color: var(--breathe-green);
+    }
+
+    .inner-breathe-tag {
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.25rem;
+    }
+
+    .inner-breathe-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.35rem, 3.6vw, 1.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--earth-brown);
+      max-width: 440px;
+      margin-bottom: 0.3rem;
+    }
+
+    .inner-breathe-sub {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--earth-muted);
+      margin-bottom: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+
+    .inner-breathe-hud-container {
+      position: relative;
+      width: 158px;
+      height: 137px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .inner-breathe-hud-interior {
+      position: absolute;
+      top: 39%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 96px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .inner-breathe-hud-main-text {
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--earth-brown);
+      line-height: 1.15;
+      transition: color 0.3s ease;
+    }
+
+    .inner-breathe-hud-sub-text {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--earth-muted);
+      margin-top: 4px;
+      line-height: 1.15;
+    }
+
+    .inner-breathe-touch-btn {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: var(--sticky-header-bg);
+      border: 2px solid var(--terracotta);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(210, 100, 70, 0.22);
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .inner-breathe-touch-btn::before {
+      content: "";
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 1.5px solid var(--sunset-coral);
+      animation: auraPulse 2.2s infinite ease-out;
+      pointer-events: none;
+    }
+
+    .breathe-touch-target-wrap.pressing .inner-breathe-touch-btn {
+      transform: scale(0.93);
+      box-shadow: 0 4px 12px rgba(46, 163, 111, 0.38);
+      border-color: var(--breathe-green);
+      background: #ffffff;
+    }
+
+    .breathe-touch-target-wrap.pressing .inner-breathe-touch-btn::before {
+      animation: none;
+      opacity: 0;
+    }
+
+    .inner-breathe-touch-btn .touch-target-label {
+      font-size: 0.64rem;
+      line-height: 1.2;
+      padding: 0 0.35rem;
+    }
+
+    .inner-breathe-note {
+      font-size: 0.74rem;
+      font-style: italic;
+      color: var(--earth-muted);
+      margin-top: 0.75rem;
+      max-width: 380px;
+    }
+
+    /* ==========================================================================
+       ITINERARY PDF DOWNLOAD BUTTON (Schedule & Pricing Headers)
+       ========================================================================== */
+    .header-cta-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 0.65rem;
+    }
+
+    .header-cta-stack .swipe-hint-pill {
+      margin-top: 0 !important;
+    }
+
+    .itinerary-pdf-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.42rem 1.05rem;
+      border-radius: 999px;
+      background: var(--card-bg);
+      border: 1px solid var(--terracotta);
+      color: var(--earth-brown);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      box-shadow: 0 3px 10px rgba(40, 28, 21, 0.07);
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .itinerary-pdf-btn:hover {
+      background: #fbdda9;
+      border-color: var(--terracotta-dark);
+      color: var(--maroon-hero);
+      transform: translateY(-1px);
+    }
+
+    .itinerary-pdf-btn:active {
       transform: translateY(0);
     }
 
@@ -1751,11 +1960,14 @@
       <li><a href="#about" class="drawer-nav-link" onclick="toggleNavDrawer()">About <span>→</span></a></li>
       <li><a href="#glimpses" class="drawer-nav-link" onclick="toggleNavDrawer()">Glimpses <span>→</span></a></li>
       <li><a href="#testimonials" class="drawer-nav-link" onclick="toggleNavDrawer()">Testimonials <span>→</span></a></li>
-      <li><a href="#lineup" class="drawer-nav-link" onclick="toggleNavDrawer()">Artists Line-UP <span>→</span></a></li>
       <li><a href="#stay" class="drawer-nav-link" onclick="toggleNavDrawer()">Location and Stay <span>→</span></a></li>
-      <li><a href="#pricing" class="drawer-nav-link" onclick="toggleNavDrawer()">Passes &amp; Inclusions <span>→</span></a></li>
+      <li><a href="#lineup" class="drawer-nav-link" onclick="toggleNavDrawer()">Artists Line-UP <span>→</span></a></li>
       <li><a href="#schedule" class="drawer-nav-link" onclick="toggleNavDrawer()">Schedule <span>→</span></a></li>
+      <li><a href="#pricing" class="drawer-nav-link" onclick="toggleNavDrawer()">Passes &amp; Inclusions <span>→</span></a></li>
       <li><a href="#faq" class="drawer-nav-link" onclick="toggleNavDrawer()">FAQ <span>→</span></a></li>
+      <li><a href="#aftermovie" class="drawer-nav-link" onclick="toggleNavDrawer()">Flowfest 1.0 Aftermovie <span>→</span></a></li>
+      <li><a href="#founder" class="drawer-nav-link" onclick="toggleNavDrawer()">Founder's Story <span>→</span></a></li>
+      <li><a href="Flowfest-2.0-Itinerary.pdf" download="Flowfest-2.0-Itinerary.pdf" class="drawer-nav-link" onclick="toggleNavDrawer()">Download Itinerary Pdf <span>↓</span></a></li>
     </ul>
   </aside>
 
@@ -1825,42 +2037,6 @@
                onerror="this.src='https://placehold.co/1600x600/f7f2ea/241812?text=banner.png+(1600x600)'" 
                alt="Flowfest 2026 Retreat Details &amp; Logos" 
                class="banner-img-responsive">
-        </div>
-      </section>
-
-      <!-- ======================================================================
-           5. HERO AFTERMOVIE CARD (Local aftermovie.jpg Thumbnail)
-           ====================================================================== -->
-      <section class="hero-video-section">
-        <div class="video-frame-container">
-          <div class="video-aspect-box">
-            
-            <div class="video-thumbnail-view" 
-                 id="heroThumbnailView"
-                 style="background-image: url('aftermovie.jpg');" 
-                 onclick="playHeroVideo()">
-              <div class="video-scrim-filter"></div>
-              
-              <div class="pulsing-play-button" aria-label="Play Flowfest Aftermovie">
-                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-              </div>
-
-              <div class="video-badge-tag">
-                Flowfest 1.0 • The Aftermovie (Nilgiris)
-              </div>
-            </div>
-
-            <iframe 
-              id="heroYoutubeIframe"
-              class="hero-youtube-iframe"
-              title="Flowfest 1.0 Aftermovie"
-              src=""
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-              referrerpolicy="strict-origin-when-cross-origin">
-            </iframe>
-
-          </div>
         </div>
       </section>
 
@@ -2059,6 +2235,103 @@
                 <div class="reel-caption-text">"As a sufi singer, we generally make people dance but at Flowfest I dance with my audience for the first time."</div>
               </div>
               <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           9. LOCATION & STAY ("THE ABODE")
+           ====================================================================== -->
+      <section class="reels-section" id="stay">
+        <div class="reels-header-area">
+          <div class="reels-super-title">THE ABODE</div>
+          <h2 class="reels-main-title">The Door to Nirvana, Kotagiri</h2>
+          
+          <!-- Trust Badge Anchor -->
+          <div class="stay-trust-badge">
+            <span class="star-rating">★ 4.8</span> on Google 
+            <span class="pipe">|</span> Verified Abode on Booking.com &amp; Hostelworld
+          </div>
+          
+          <div style="margin-top: 0.85rem;">
+            <div class="swipe-hint-pill" style="margin-top: 0;">
+              Click to expand | Swipe to explore →
+            </div>
+          </div>
+        </div>
+
+        <div class="reels-carousel-viewport">
+          
+          <article class="stay-square-card">
+            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="venue1.mp4#t=0.1"></video>
+            <div class="reel-bottom-overlay">
+              <div class="reel-meta-info">
+                <div class="reel-counter-tag">The Door to Nirvana</div>
+                <div class="reel-caption-text">A cozy abode at 1700m altitude, in the Nilgiris</div>
+              </div>
+              <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
+            </div>
+          </article>
+
+          <article class="stay-square-card">
+            <img class="card-media-element" src="venue2.jpg" onerror="this.src='https://placehold.co/700x700/241812/fff?text=The+Main+Lodge'" alt="The Main House Exterior">
+            <div class="reel-bottom-overlay">
+              <div class="reel-meta-info">
+                <div class="reel-counter-tag">The Abode</div>
+                <div class="reel-caption-text">The wooden &amp; stone house perched above the Nilgiris cloud line</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="stay-square-card">
+            <img class="card-media-element" src="venue3.jpg" onerror="this.src='https://placehold.co/700x700/302018/fff?text=Dormitories+(6,8,10+Beds)'" alt="Dormitory Rooms">
+            <div class="reel-bottom-overlay">
+              <div class="reel-meta-info">
+                <div class="reel-counter-tag">The Abode</div>
+                <div class="reel-caption-text">The wooden &amp; stone house perched above the Nilgiris cloud line</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="stay-square-card">
+            <img class="card-media-element" src="venue4.jpg" onerror="this.src='https://placehold.co/700x700/1f2820/fff?text=Private+Rooms'" alt="Private Rooms">
+            <div class="reel-bottom-overlay">
+              <div class="reel-meta-info">
+                <div class="reel-counter-tag">Shared Dormitories</div>
+                <div class="reel-caption-text">6, 8 &amp; 10-bed wooden dormitories with cozy beds &amp; personal lockers, and balconies that open to mountain views</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="stay-square-card">
+            <img class="card-media-element" src="venue5.jpg" onerror="this.src='https://placehold.co/700x700/2b1a1f/fff?text=Private+Cottages'" alt="Private Cottages">
+            <div class="reel-bottom-overlay">
+              <div class="reel-meta-info">
+                <div class="reel-counter-tag">Private rooms</div>
+                <div class="reel-caption-text">Double occupancy rooms with mountain views</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="stay-square-card">
+            <img class="card-media-element" src="venue6.jpg" onerror="this.src='https://placehold.co/700x700/1e2329/fff?text=Open-Air+Theater'" alt="The Amphitheater">
+            <div class="reel-bottom-overlay">
+              <div class="reel-meta-info">
+                <div class="reel-counter-tag">SECLUDED COTTAGES</div>
+                <div class="reel-caption-text">Situated in a valley, 500m away from the abode</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="stay-square-card">
+            <img class="card-media-element" src="venue7.jpg" onerror="this.src='https://placehold.co/700x700/332219/fff?text=Common+Room+&+Dining'" alt="Common Room and Dining">
+            <div class="reel-bottom-overlay">
+              <div class="reel-meta-info">
+                <div class="reel-counter-tag">WHOLESOME OUTDOORS</div>
+                <div class="reel-caption-text">Spaces that connects you to nature</div>
+              </div>
             </div>
           </article>
 
@@ -2328,99 +2601,110 @@
       </section>
 
       <!-- ======================================================================
-           9. LOCATION & STAY ("THE ABODE")
+           11. SCHEDULE SECTION (day1.jpg - day11.jpg)
            ====================================================================== -->
-      <section class="reels-section" id="stay">
+      <section class="reels-section" id="schedule">
         <div class="reels-header-area">
-          <div class="reels-super-title">THE ABODE</div>
-          <h2 class="reels-main-title">The Door to Nirvana, Kotagiri</h2>
-          
-          <!-- Trust Badge Anchor -->
-          <div class="stay-trust-badge">
-            <span class="star-rating">★ 4.8</span> on Google 
-            <span class="pipe">|</span> Verified Abode on Booking.com &amp; Hostelworld
-          </div>
-          
-          <div style="margin-top: 0.85rem;">
-            <div class="swipe-hint-pill" style="margin-top: 0;">
+          <div class="reels-super-title">THE JOURNEY</div>
+          <h2 class="reels-main-title">Schedule &amp; Rhythm</h2>
+          <p class="section-segue-quote">
+            Flowfest moves like an organic wave across the mountains - balancing stillness and dynamism.
+          </p>
+
+          <div class="header-cta-stack">
+            <div class="swipe-hint-pill">
               Click to expand | Swipe to explore →
             </div>
+            <a href="Flowfest-2.0-Itinerary.pdf" download="Flowfest-2.0-Itinerary.pdf" class="itinerary-pdf-btn">
+              Download Itinerary Pdf ↓
+            </a>
           </div>
         </div>
 
-        <div class="reels-carousel-viewport">
+        <div class="reels-carousel-viewport" id="scheduleViewport">
           
-          <article class="stay-square-card">
-            <video class="card-media-element reel-video-element" loop playsinline preload="metadata" muted src="venue1.mp4#t=0.1"></video>
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">The Door to Nirvana</div>
-                <div class="reel-caption-text">A cozy abode at 1700m altitude, in the Nilgiris</div>
-              </div>
-              <button class="sound-toggle-btn" onclick="toggleVideoMute(this)" aria-label="Toggle Sound">Unmute</button>
-            </div>
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day1.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+1+•+24+Dec'" alt="Flowfest 2.0 Schedule Day 1 (24 Dec)">
           </article>
 
-          <article class="stay-square-card">
-            <img class="card-media-element" src="venue2.jpg" onerror="this.src='https://placehold.co/700x700/241812/fff?text=The+Main+Lodge'" alt="The Main House Exterior">
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">The Abode</div>
-                <div class="reel-caption-text">The wooden &amp; stone house perched above the Nilgiris cloud line</div>
-              </div>
-            </div>
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day2.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+2+•+25+Dec'" alt="Flowfest 2.0 Schedule Day 2 (25 Dec)">
           </article>
 
-          <article class="stay-square-card">
-            <img class="card-media-element" src="venue3.jpg" onerror="this.src='https://placehold.co/700x700/302018/fff?text=Dormitories+(6,8,10+Beds)'" alt="Dormitory Rooms">
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">The Abode</div>
-                <div class="reel-caption-text">The wooden &amp; stone house perched above the Nilgiris cloud line</div>
-              </div>
-            </div>
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day3.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+3+•+26+Dec'" alt="Flowfest 2.0 Schedule Day 3 (26 Dec)">
           </article>
 
-          <article class="stay-square-card">
-            <img class="card-media-element" src="venue4.jpg" onerror="this.src='https://placehold.co/700x700/1f2820/fff?text=Private+Rooms'" alt="Private Rooms">
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Shared Dormitories</div>
-                <div class="reel-caption-text">6, 8 &amp; 10-bed wooden dormitories with cozy beds &amp; personal lockers, and balconies that open to mountain views</div>
-              </div>
-            </div>
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day4.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+4+•+27+Dec'" alt="Flowfest 2.0 Schedule Day 4 (27 Dec)">
           </article>
 
-          <article class="stay-square-card">
-            <img class="card-media-element" src="venue5.jpg" onerror="this.src='https://placehold.co/700x700/2b1a1f/fff?text=Private+Cottages'" alt="Private Cottages">
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">Private rooms</div>
-                <div class="reel-caption-text">Double occupancy rooms with mountain views</div>
-              </div>
-            </div>
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day5.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+5+•+28+Dec'" alt="Flowfest 2.0 Schedule Day 5 (28 Dec)">
           </article>
 
-          <article class="stay-square-card">
-            <img class="card-media-element" src="venue6.jpg" onerror="this.src='https://placehold.co/700x700/1e2329/fff?text=Open-Air+Theater'" alt="The Amphitheater">
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">SECLUDED COTTAGES</div>
-                <div class="reel-caption-text">Situated in a valley, 500m away from the abode</div>
-              </div>
-            </div>
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day6.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+6+•+29+Dec'" alt="Flowfest 2.0 Schedule Day 6 (29 Dec)">
           </article>
 
-          <article class="stay-square-card">
-            <img class="card-media-element" src="venue7.jpg" onerror="this.src='https://placehold.co/700x700/332219/fff?text=Common+Room+&+Dining'" alt="Common Room and Dining">
-            <div class="reel-bottom-overlay">
-              <div class="reel-meta-info">
-                <div class="reel-counter-tag">WHOLESOME OUTDOORS</div>
-                <div class="reel-caption-text">Spaces that connects you to nature</div>
-              </div>
-            </div>
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day7.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+7+•+30+Dec'" alt="Flowfest 2.0 Schedule Day 7 (30 Dec)">
           </article>
 
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day8.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+8+•+31+Dec'" alt="Flowfest 2.0 Schedule Day 8 (31 Dec)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day9.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+9+•+1+Jan'" alt="Flowfest 2.0 Schedule Day 9 (1 Jan)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day10.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+10+•+2+Jan'" alt="Flowfest 2.0 Schedule Day 10 (2 Jan)">
+          </article>
+
+          <article class="schedule-poster-card">
+            <img class="card-media-element" src="day11.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+11+•+3+Jan'" alt="Flowfest 2.0 Schedule Day 11 (3 Jan)">
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VOLUNTARY INNER BREATHWORK SECTION (Non-Overlapping, Above #pricing)
+           ====================================================================== -->
+      <section class="inner-breathwork-section" id="innerBreathworkSection">
+        <div class="inner-breathwork-card" id="innerBreatheCard">
+          <div class="inner-breathe-tag">Pause &amp; Center Before Choosing</div>
+          <h2 class="inner-breathe-title">Take a conscious breath, the triangle will guide you</h2>
+          <p class="inner-breathe-sub">2s Inhale &emsp;|&emsp; 1s Hold &emsp;|&emsp; 3s Exhale</p>
+
+          <!-- COMPACT INVERTED EQUILATERAL TRIANGLE HUD -->
+          <div class="inner-breathe-hud-container" id="innerBreatheHud">
+            <svg class="breathe-svg-triangle" viewBox="0 0 210 182">
+              <path class="breathe-track-path" d="M 105,172 L 15,16 L 195,16 Z"></path>
+              <path class="breathe-progress-path" id="innerBreatheProgressTriangle" d="M 105,172 L 15,16 L 195,16 Z"></path>
+            </svg>
+
+            <div class="inner-breathe-hud-interior" id="innerBreatheHudInterior">
+              <div class="inner-breathe-hud-main-text" id="innerBreatheMainText">READY TO<br>CENTER?</div>
+              <div class="inner-breathe-hud-sub-text" id="innerBreatheSubText">Hold button<br>below</div>
+            </div>
+          </div>
+
+          <div class="breathe-touch-target-wrap" id="innerBreatheTouchWrap"
+               onmousedown="startInnerBreathingSession(event)"
+               onmouseup="stopInnerBreathingSession(event)"
+               onmouseleave="stopInnerBreathingSession(event)"
+               ontouchstart="startInnerBreathingSession(event)"
+               ontouchend="stopInnerBreathingSession(event)"
+               ontouchcancel="stopInnerBreathingSession(event)">
+            <div class="inner-breathe-touch-btn">
+              <span class="touch-target-label">PRESS &amp; HOLD</span>
+            </div>
+          </div>
+
+          <p class="inner-breathe-note">Optional 6-second nervous system reset — or scroll right below to explore retreat passes.</p>
         </div>
       </section>
 
@@ -2435,8 +2719,13 @@
             Capped strictly at 35 seekers. Every pass covers all sessions, workshops and accommodation.
           </p>
 
-          <div class="swipe-hint-pill" style="display: inline-flex; margin-top: 0.65rem;">
-            Swipe to view passes →
+          <div class="header-cta-stack">
+            <div class="swipe-hint-pill" style="display: inline-flex;">
+              Swipe to view passes →
+            </div>
+            <a href="Flowfest-2.0-Itinerary.pdf" download="Flowfest-2.0-Itinerary.pdf" class="itinerary-pdf-btn">
+              Download Itinerary Pdf ↓
+            </a>
           </div>
         </div>
 
@@ -2560,71 +2849,6 @@
       </section>
 
       <!-- ======================================================================
-           11. SCHEDULE SECTION (day1.jpg - day11.jpg)
-           ====================================================================== -->
-      <section class="reels-section" id="schedule">
-        <div class="reels-header-area">
-          <div class="reels-super-title">THE JOURNEY</div>
-          <h2 class="reels-main-title">Schedule &amp; Rhythm</h2>
-          <p class="section-segue-quote">
-            Flowfest moves like an organic wave across the mountains - balancing stillness and dynamism.
-          </p>
-
-          <div class="swipe-hint-pill">
-            Click to expand | Swipe to explore →
-          </div>
-        </div>
-
-        <div class="reels-carousel-viewport" id="scheduleViewport">
-          
-          <article class="schedule-poster-card">
-            <img class="card-media-element" src="day1.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+1+•+24+Dec'" alt="Flowfest 2.0 Schedule Day 1 (24 Dec)">
-          </article>
-
-          <article class="schedule-poster-card">
-            <img class="card-media-element" src="day2.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+2+•+25+Dec'" alt="Flowfest 2.0 Schedule Day 2 (25 Dec)">
-          </article>
-
-          <article class="schedule-poster-card">
-            <img class="card-media-element" src="day3.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+3+•+26+Dec'" alt="Flowfest 2.0 Schedule Day 3 (26 Dec)">
-          </article>
-
-          <article class="schedule-poster-card">
-            <img class="card-media-element" src="day4.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+4+•+27+Dec'" alt="Flowfest 2.0 Schedule Day 4 (27 Dec)">
-          </article>
-
-          <article class="schedule-poster-card">
-            <img class="card-media-element" src="day5.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+5+•+28+Dec'" alt="Flowfest 2.0 Schedule Day 5 (28 Dec)">
-          </article>
-
-          <article class="schedule-poster-card">
-            <img class="card-media-element" src="day6.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+6+•+29+Dec'" alt="Flowfest 2.0 Schedule Day 6 (29 Dec)">
-          </article>
-
-          <article class="schedule-poster-card">
-            <img class="card-media-element" src="day7.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+7+•+30+Dec'" alt="Flowfest 2.0 Schedule Day 7 (30 Dec)">
-          </article>
-
-          <article class="schedule-poster-card">
-            <img class="card-media-element" src="day8.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+8+•+31+Dec'" alt="Flowfest 2.0 Schedule Day 8 (31 Dec)">
-          </article>
-
-          <article class="schedule-poster-card">
-            <img class="card-media-element" src="day9.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+9+•+1+Jan'" alt="Flowfest 2.0 Schedule Day 9 (1 Jan)">
-          </article>
-
-          <article class="schedule-poster-card">
-            <img class="card-media-element" src="day10.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+10+•+2+Jan'" alt="Flowfest 2.0 Schedule Day 10 (2 Jan)">
-          </article>
-
-          <article class="schedule-poster-card">
-            <img class="card-media-element" src="day11.jpg" onerror="this.src='https://placehold.co/800x1000/fffcf8/241812?text=Day+11+•+3+Jan'" alt="Flowfest 2.0 Schedule Day 11 (3 Jan)">
-          </article>
-
-        </div>
-      </section>
-
-      <!-- ======================================================================
            12. FAQ SECTION
            ====================================================================== -->
       <section class="reels-section" id="faq">
@@ -2702,9 +2926,45 @@
       </section>
 
       <!-- ======================================================================
+           5. HERO AFTERMOVIE CARD (Local aftermovie.jpg Thumbnail)
+           ====================================================================== -->
+      <section class="hero-video-section" id="aftermovie">
+        <div class="video-frame-container">
+          <div class="video-aspect-box">
+            
+            <div class="video-thumbnail-view" 
+                 id="heroThumbnailView"
+                 style="background-image: url('aftermovie.jpg');" 
+                 onclick="playHeroVideo()">
+              <div class="video-scrim-filter"></div>
+              
+              <div class="pulsing-play-button" aria-label="Play Flowfest Aftermovie">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+
+              <div class="video-badge-tag">
+                Flowfest 1.0 • The Aftermovie (Nilgiris)
+              </div>
+            </div>
+
+            <iframe 
+              id="heroYoutubeIframe"
+              class="hero-youtube-iframe"
+              title="Flowfest 1.0 Aftermovie"
+              src=""
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
            13. DEDICATED FOUNDER STORY CARD (Pre-Footer)
            ====================================================================== -->
-      <section class="founder-video-section">
+      <section class="founder-video-section" id="founder">
         <div class="reels-header-area">
           <h2 class="reels-main-title">Why We Gather at Flowfest</h2>
         </div>
@@ -2819,6 +3079,23 @@
        SCRIPTS: META ATTRIBUTION, HISTORY API, MODALS, AUDIO SYNC & OBSERVERS
        ======================================================================== -->
   <script>
+    /* ==========================================================================
+       GITHUB BREATHWORK 1 / 0 TOGGLES (EDIT HERE DIRECTLY ON GITHUB)
+       - Set to 1 to ENABLE, set to 0 to DISABLE
+       ========================================================================== */
+    const ENABLE_ENTRY_BREATHWORK_GATE = 0;    // 1 = Show full-screen arrival gate, 0 = Hide entry gate
+    const ENABLE_INNER_BREATHWORK_SECTION = 1; // 1 = Show inner breathwork above #pricing, 0 = Hide inner section
+
+    // Apply toggle classes immediately to prevent flash of disabled elements
+    (function applyBreathworkConfig() {
+      if (Number(ENABLE_ENTRY_BREATHWORK_GATE) !== 1) {
+        document.documentElement.classList.add('gate-disabled');
+      }
+      if (Number(ENABLE_INNER_BREATHWORK_SECTION) !== 1) {
+        document.documentElement.classList.add('inner-breathe-disabled');
+      }
+    })();
+
     /* ==========================================================================
        META PIXEL & CROSS-DOMAIN (_fbp / _fbc) ATTRIBUTION ENGINE
        ========================================================================== */
@@ -3000,7 +3277,7 @@
         videos.forEach(video => observer.observe(video));
       }
 
-      if (sessionStorage.getItem('flowfest_gate_unlocked') === 'true') {
+      if (Number(ENABLE_ENTRY_BREATHWORK_GATE) !== 1 || sessionStorage.getItem('flowfest_gate_unlocked') === 'true') {
         const gate = document.getElementById('breatheGate');
         if (gate) {
           gate.classList.add('unlocked');
@@ -3163,6 +3440,133 @@
       setTimeout(() => {
         gateOverlay.classList.add('unlocked');
       }, 1100);
+    }
+
+    /* ==========================================================================
+       VOLUNTARY INNER BREATHWORK TIMER ENGINE (ABOVE #pricing)
+       ========================================================================== */
+    let isInnerHolding = false;
+    let innerBreathStartTime = null;
+    let innerBreathAnimationFrame = null;
+    let innerCurrentPhase = 0;
+
+    const innerBreatheCard = document.getElementById('innerBreatheCard');
+    const innerTouchWrap = document.getElementById('innerBreatheTouchWrap');
+    const innerProgressTriangle = document.getElementById('innerBreatheProgressTriangle');
+    const innerMainText = document.getElementById('innerBreatheMainText');
+    const innerSubText = document.getElementById('innerBreatheSubText');
+
+    let INNER_TRIANGLE_PERIMETER = 540;
+    if (innerProgressTriangle && innerProgressTriangle.getTotalLength) {
+      INNER_TRIANGLE_PERIMETER = innerProgressTriangle.getTotalLength();
+      innerProgressTriangle.style.strokeDasharray = INNER_TRIANGLE_PERIMETER;
+      innerProgressTriangle.style.strokeDashoffset = INNER_TRIANGLE_PERIMETER;
+    }
+
+    function startInnerBreathingSession(e) {
+      if (e) e.preventDefault();
+      if (isInnerHolding || !innerTouchWrap || !innerProgressTriangle) return;
+
+      isInnerHolding = true;
+      innerCurrentPhase = 1;
+      innerTouchWrap.classList.add('pressing');
+      if (innerBreatheCard) innerBreatheCard.classList.add('is-breathing');
+      innerBreathStartTime = performance.now();
+
+      if (navigator.vibrate) {
+        try { navigator.vibrate(30); } catch (_) {}
+      }
+
+      innerBreathAnimationFrame = requestAnimationFrame(updateInnerBreathingLoop);
+    }
+
+    function stopInnerBreathingSession(e) {
+      if (e) e.preventDefault();
+      if (!isInnerHolding) return;
+
+      isInnerHolding = false;
+      innerCurrentPhase = 0;
+      if (innerTouchWrap) innerTouchWrap.classList.remove('pressing');
+      if (innerBreatheCard) innerBreatheCard.classList.remove('is-breathing');
+      cancelAnimationFrame(innerBreathAnimationFrame);
+
+      innerProgressTriangle.style.strokeDashoffset = INNER_TRIANGLE_PERIMETER;
+      innerProgressTriangle.style.stroke = 'var(--breathe-green)';
+      innerMainText.innerHTML = 'READY TO<br>CENTER?';
+      innerMainText.style.color = 'var(--earth-brown)';
+      innerSubText.innerHTML = 'Hold button<br>below';
+    }
+
+    function updateInnerBreathingLoop(timestamp) {
+      if (!isInnerHolding) return;
+
+      const elapsed = timestamp - innerBreathStartTime;
+      let progress = 0;
+
+      if (elapsed <= INHALE_END) {
+        innerCurrentPhase = 1;
+        const phaseRatio = Math.min(elapsed / INHALE_DURATION, 1);
+        progress = phaseRatio * (1 / 3);
+
+        innerProgressTriangle.style.stroke = 'var(--breathe-green)';
+        innerMainText.innerHTML = 'INHALE<br>DEEPLY';
+        innerMainText.style.color = 'var(--breathe-green)';
+        innerSubText.innerHTML = ' ';
+      } else if (elapsed <= HOLD_END) {
+        if (innerCurrentPhase !== 2) {
+          innerCurrentPhase = 2;
+          if (navigator.vibrate) {
+            try { navigator.vibrate([35]); } catch (_) {}
+          }
+        }
+        const phaseRatio = Math.min((elapsed - INHALE_END) / HOLD_DURATION, 1);
+        progress = (1 / 3) + (phaseRatio * (1 / 3));
+
+        innerProgressTriangle.style.stroke = 'var(--breathe-blue)';
+        innerMainText.innerHTML = 'HOLD<br>BREATH';
+        innerMainText.style.color = 'var(--breathe-blue)';
+        innerSubText.innerHTML = ' ';
+      } else {
+        if (innerCurrentPhase !== 3) {
+          innerCurrentPhase = 3;
+          if (navigator.vibrate) {
+            try { navigator.vibrate([40, 50, 40]); } catch (_) {}
+          }
+        }
+        const phaseRatio = Math.min((elapsed - HOLD_END) / EXHALE_DURATION, 1);
+        progress = (2 / 3) + (phaseRatio * (1 / 3));
+
+        innerProgressTriangle.style.stroke = 'var(--breathe-red)';
+        innerMainText.innerHTML = 'EXHALE<br>SLOWLY';
+        innerMainText.style.color = 'var(--breathe-red)';
+        innerSubText.innerHTML = ' ';
+      }
+
+      progress = Math.min(progress, 1);
+      const offset = INNER_TRIANGLE_PERIMETER - (progress * INNER_TRIANGLE_PERIMETER);
+      innerProgressTriangle.style.strokeDashoffset = offset;
+
+      if (elapsed >= TOTAL_BREATHE_TIME) {
+        completeInnerBreathingSession();
+      } else {
+        innerBreathAnimationFrame = requestAnimationFrame(updateInnerBreathingLoop);
+      }
+    }
+
+    function completeInnerBreathingSession() {
+      isInnerHolding = false;
+      cancelAnimationFrame(innerBreathAnimationFrame);
+      if (innerTouchWrap) innerTouchWrap.classList.remove('pressing');
+      if (innerBreatheCard) innerBreatheCard.classList.remove('is-breathing');
+
+      innerMainText.innerHTML = 'CENTERED';
+      innerMainText.style.color = 'var(--breathe-green)';
+      innerSubText.innerHTML = 'Explore passes<br>below ↓';
+      innerProgressTriangle.style.stroke = 'var(--breathe-green)';
+
+      if (navigator.vibrate) {
+        try { navigator.vibrate([70]); } catch (_) {}
+      }
     }
 
     /* ==========================================================================
